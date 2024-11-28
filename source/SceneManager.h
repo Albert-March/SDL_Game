@@ -42,17 +42,18 @@ public:
 		return nullptr;
 	}
 
-	inline Scene* GetCurrentScene() { return currentScene; }
-
-	inline bool SetCurrentScene(std::string name)
+	inline bool InitFirstScene(std::string name)
 	{
 		if (scenes.find(name) != scenes.end())
 		{
 			currentScene = scenes[name];
+			currentScene->OnEnter();
 			return true;
 		}
 		return false;
 	}
+
+	inline Scene* GetCurrentScene() const { return currentScene; }
 
 	inline bool SetNextScene(std::string name)
 	{

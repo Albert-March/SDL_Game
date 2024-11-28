@@ -5,8 +5,8 @@
 class Scene
 {
 protected:
-	std::vector<Object> ui;
-	std::vector<Object> objects;
+	std::vector<Object*> ui;
+	std::vector<Object*> objects;
 
 public:
 	Scene() = default;

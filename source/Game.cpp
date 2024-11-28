@@ -12,8 +12,7 @@ void Game::Init()
 	assert(SM.AddScene("Main Menu", new MainMenu()));
 	assert(SM.AddScene("Gameplay", new Gameplay()));
 
-	assert(SM.SetCurrentScene("Gameplay"));
-	SM.GetCurrentScene()->OnEnter();
+	assert(SM.InitFirstScene("Gameplay"));
 }
 
 void Game::Update()
