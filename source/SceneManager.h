@@ -10,6 +10,7 @@ class SceneManager
 private:
 	std::unordered_map<std::string, Scene*> scenes;
 	Scene* currentScene = nullptr;
+	std::string nextScene = "";
 
 	SceneManager() = default;
 	SceneManager(SceneManager&) = delete;
@@ -50,7 +51,27 @@ public:
 			currentScene = scenes[name];
 			return true;
 		}
-
 		return false;
+	}
+
+	inline bool SetNextScene(std::string name)
+	{
+		if (scenes.find(name) == scenes.end())
+			return false;
+
+		nextScene = name;
+		return true;
+	}
+
+	inline void UpdateCurrentScene()
+	{
+		if (nextScene != "")
+		{
+			currentScene->OnExit();
+			currentScene = scenes[nextScene];
+			currentScene->OnEnter();
+			nextScene = "";
+		}
+		currentScene->Update();
 	}
 };

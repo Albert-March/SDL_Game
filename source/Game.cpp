@@ -2,32 +2,37 @@
 #include "RenderManager.h"
 #include "TimeManager.h"
 #include "Gameplay.h"
+#include "SceneManager.h"
+#include "MainMenu.h"
 
 void Game::Init()
 {
 	RM->Init();
 
-	gameplayTest = new Gameplay();
-	gameplayTest->OnEnter();
+	assert(SM.AddScene("Main Menu", new MainMenu()));
+	assert(SM.AddScene("Gameplay", new Gameplay()));
+
+	assert(SM.SetCurrentScene("Gameplay"));
+	SM.GetCurrentScene()->OnEnter();
 }
 
 void Game::Update()
 {	
-	gameplayTest->Update();
+	SM.UpdateCurrentScene();
 }
 
 void Game::Render()
 {
 	RM->ClearScreen();
 
-	gameplayTest->Render();
+	SM.GetCurrentScene()->Render();
 
 	RM->RenderScreen();
 }
 
 void Game::Release()
 {
-	gameplayTest->OnEnter();
+	SM.GetCurrentScene()->OnEnter();
 
 	RM->Release();
 }
