@@ -10,6 +10,7 @@
 int main(int argc, char* args[]) {
 
 	Game game;
+	srand(time(NULL));
 	
 	try {
 		game.Init();

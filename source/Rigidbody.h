@@ -26,6 +26,12 @@ public:
 		linearDrag(0.0f), angularDrag(0.0f) {}
 	inline void AddCollider(AABB* collider) { colliders.push_back(collider); }
 
+	~Rigidbody() {
+		for (AABB* collider : colliders) {
+			delete collider;
+		}
+	}
+
 	bool CheckCollision(const Rigidbody* other) {
 		for (AABB* myCol : colliders) {
 			for (AABB* otherCol : other->colliders) {

@@ -37,6 +37,11 @@
     <ClInclude Include="source\Rigidbody.h" />
     <ClInclude Include="source\Scene.h" />
     <ClInclude Include="source\SceneManager.h" />
+<<<<<<< Updated upstream
+=======
+    <ClInclude Include="source\Spawner.h" />
+    <ClInclude Include="source\TestObject.h" />
+>>>>>>> Stashed changes
     <ClInclude Include="source\TimeManager.h" />
     <ClInclude Include="source\Transform.h" />
     <ClInclude Include="source\Vector2.h" />

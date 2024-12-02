@@ -74,5 +74,14 @@
     <ClInclude Include="source\SceneManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+<<<<<<< Updated upstream
+=======
+    <ClInclude Include="source\Spawner.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\TestObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+>>>>>>> Stashed changes
   </ItemGroup>
 </Project>

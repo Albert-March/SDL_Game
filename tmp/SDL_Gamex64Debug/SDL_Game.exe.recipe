@@ -2,7 +2,11 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
+<<<<<<< Updated upstream
       <FullPath>C:\Users\AlbertMarchTolosa\Documents\GitHub\C00_Files\SDL_Game\binaries\x64Debug\SDL_Game.exe</FullPath>
+=======
+      <FullPath>C:\Users\JimenaSanchezAldecoa\Documents\GitHub\SDL_Game\binaries\x64Debug\SDL_Game.exe</FullPath>
+>>>>>>> Stashed changes
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />
