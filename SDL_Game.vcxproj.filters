@@ -77,5 +77,8 @@
     <ClInclude Include="source\Spawner.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="source\TestObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

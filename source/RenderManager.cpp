@@ -71,7 +71,7 @@ void RenderManager::InitSDL()
 
 void RenderManager::CreateWindowAndRenderer()
 {
-	int result = SDL_CreateWindowAndRenderer(1360, 768, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE, &window, &renderer);
+	int result = SDL_CreateWindowAndRenderer(WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE, &window, &renderer);
 
 	bool succes = result >= 0;
 	if (!succes)

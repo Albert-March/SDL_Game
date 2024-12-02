@@ -8,18 +8,21 @@
 class Object
 {
 private:
-	bool isPendingDestroy;
+	bool isPendingDestroy = false;
 
 	Renderer* renderer;
 
-public:
+protected:
 	Transform* transform;
 	Rigidbody* physics;
 
+public:
+	
 	Object(std::string texturePath, Vector2 sourceOffset, Vector2 sourceSize, bool imageType)
 	{
 		transform = new Transform();
 		physics = new Rigidbody(transform);
+		physics->AddCollider(new AABB(sourceOffset, sourceSize * 0.2f));
 		if (!imageType)
 		{
 			renderer = new ImageRenderer(transform, texturePath, sourceOffset, sourceSize);
@@ -31,6 +34,12 @@ public:
 
 		isPendingDestroy = false;
 
+	}
+
+	~Object() {
+		delete transform;
+		delete physics;
+		delete renderer;
 	}
 
 	virtual void Update() {
@@ -48,8 +57,10 @@ public:
 	Rigidbody* GetRigidBody() { return physics; }
 	void SetTransform(Transform* t) { transform = t; }
 
-	// DE MOMENT NO
-	/*bool IsPendingDestroy();
-	virtual void Destroy();
-	virtual void OnCollisionEnter(Object* other);*/
+	bool IsPendingDestroy() const { return isPendingDestroy; }
+
+	virtual void Destroy() {
+		isPendingDestroy = true;
+	}
+	virtual void OnCollisionEnter(Object* other) {}
 };

@@ -8,7 +8,7 @@ public:
 	ImageRenderer(Transform* transform, std::string resourcePath, Vector2 sourceOffset, Vector2 sourceSize)
 		: Renderer(transform, resourcePath) 
 	{
-		RM->LoadTexture(resourcePath);
+		RM->GetTexture(resourcePath);
 
 		sourceRect = SDL_Rect
 		{

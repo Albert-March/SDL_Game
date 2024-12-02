@@ -1,46 +1,35 @@
 #pragma once
 #include "Scene.h"
 #include "Spawner.h"
+#include "TestObject.h"
 
 class Gameplay : public Scene
 {
 public:
 	Gameplay() = default;
+
 	void OnEnter() override
 	{
-		Object* o = new Object("resources/animation.png", Vector2(0.0f, 0.0f), Vector2(896.f, 64.f), false);
-		o->GetRigidBody()->AddForce(Vector2(100, 100));
-		SPAWN.SpawnObject(o);
+		for(int i = 0; i<50; i++)
+			SpawnObjectRandomly();
 	}
 
+	void SpawnObjectRandomly() {		
+		SPAWN.SpawnObject(new TestObject());
+	}
 	void OnExit() override
 	{
-
+		Scene::OnExit();
 	}
 
 	void Update() override
 	{
-		//DESTRUCTION
-
-
-		//SPAWNING
-		while (SPAWN.GetSpawnObjectsCount() > 0)
-		{
-			objects.push_back(SPAWN.GetSpawnedObject());
-		}
-
-		//UPDATING
-		for (Object* o : objects)
-		{
-			o->Update();
-		}
+		Scene::Update();
+		SpawnObjectRandomly();
 	}
 
 	void Render() override
 	{
-		for (Object* o : objects)
-		{
-			o->Render();
-		}
+		Scene::Render();
 	}
 };
