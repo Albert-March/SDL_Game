@@ -13,16 +13,24 @@ public:
 	{
 		float length = sqrt(x * x + y * y);
 	}
-	inline Vector2 const operator+(const Vector2& other) 
+	inline Vector2 const operator+(const Vector2& other) const
 	{
 		return Vector2(x + other.x, y + other.y);
 	}
-	inline Vector2 const operator-(const Vector2& other)
+	inline Vector2 const operator-(const Vector2& other) const
 	{
 		return Vector2(x - other.x, y - other.y);
 	}
-	inline Vector2 const operator*(const float& other)
+	inline Vector2 const operator*(const float& other) const
 	{
 		return Vector2(x * other, y * other);
+	}
+	inline Vector2 const operator*(const Vector2& other) const
+	{
+		return Vector2(x * other.x, y * other.y);
+	}
+	inline Vector2 const operator/(const float& other) const
+	{
+		return Vector2(x / other, y / other);
 	}
 };

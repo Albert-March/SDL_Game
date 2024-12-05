@@ -10,26 +10,14 @@ public:
 
 	void OnEnter() override
 	{
-		for(int i = 0; i<50; i++)
-			SpawnObjectRandomly();
+		/*for(int i = 0; i<50; i++)
+			SpawnObjectRandomly();*/
+
+		objects.push_back(new TestObject(Vector2(100, 100), Vector2(1000, 0)));
+		objects.push_back(new TestObject(Vector2(500, 100), Vector2(-1000, 0)));
 	}
 
 	void SpawnObjectRandomly() {		
 		SPAWN.SpawnObject(new TestObject());
-	}
-	void OnExit() override
-	{
-		Scene::OnExit();
-	}
-
-	void Update() override
-	{
-		Scene::Update();
-		SpawnObjectRandomly();
-	}
-
-	void Render() override
-	{
-		Scene::Render();
 	}
 };

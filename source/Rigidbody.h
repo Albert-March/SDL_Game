@@ -68,8 +68,11 @@ public:
 		angularAcceleration = 0.0f;
 
 		//5 -> Update the colliders positioning
+		Vector2 offset = (Vector2(-transform->size.x, -transform->size.y) / 2.0f) * transform->scale;
+
 		for (AABB* col : colliders) {
 			col->SetTopLeft(transform->position);
+			col->SetSize(transform->size * transform->scale);
 		}
 	}
 	inline void AddForce(Vector2 force) { acceleration = acceleration + force; }
