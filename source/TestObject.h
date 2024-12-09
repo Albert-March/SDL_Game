@@ -10,6 +10,7 @@ public:
 		//RAND IN ALL THE WINDOW
 		Vector2 randomPos = Vector2(rand() % RM->WINDOW_WIDTH, rand() % RM->WINDOW_HEIGHT);
 		transform->position = randomPos;
+		transform->rotation = 30.0f;
 		transform->scale = Vector2(1.f, 1.f);
 
 		Vector2 randomForce = Vector2(-5000 + rand() % 10001, -5000 + rand() % 10001);
@@ -20,6 +21,7 @@ public:
 		: Object("resources/cat.jpg", Vector2(0.f, 0.f), Vector2(1500.f, 1500.f), false) {
 
 		transform->position = pos;
+		physics->AddTorque(3000.0f);
 		transform->scale = Vector2(1.f, 1.f);
 		physics->AddForce(startVelocity);
 	}
