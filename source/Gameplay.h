@@ -2,6 +2,7 @@
 #include "Scene.h"
 #include "Spawner.h"
 #include "TestObject.h"
+#include "TextObject.h"
 
 class Gameplay : public Scene
 {
@@ -13,8 +14,13 @@ public:
 		/*for(int i = 0; i<50; i++)
 			SpawnObjectRandomly();*/
 
-		objects.push_back(new TestObject(Vector2(100, 100), Vector2(1000, 0)));
-		objects.push_back(new TestObject(Vector2(500, 100), Vector2(-1000, 0)));
+		//SPAWN.SpawnObject(new TestObject(Vector2(100, 100), Vector2(1000, 0)));
+		//SPAWN.SpawnObject(new TestObject(Vector2(500, 100), Vector2(-1000, 0)));
+
+		//Crea un text object que digui "Hola" a la posicio (100, 100)
+		Object* textObj = new TextObject("Tocafi CALVOOO");
+		textObj->GetTransform()->position = Vector2(100, 100);
+		SPAWN.SpawnObject(textObj);
 	}
 
 	void SpawnObjectRandomly() {		

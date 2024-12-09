@@ -10,15 +10,20 @@ class Object
 private:
 	bool isPendingDestroy = false;
 
-	Renderer* renderer;
-
 protected:
+	Renderer* renderer = nullptr;
 	Transform* transform;
 	Rigidbody* physics;
 
 public:
 	
-	Object(std::string texturePath, Vector2 sourceOffset, Vector2 sourceSize, bool imageType)
+	Object()
+	{
+		transform = new Transform();
+		physics = new Rigidbody(transform);
+	}
+
+	/*Object(std::string texturePath, Vector2 sourceOffset, Vector2 sourceSize, bool imageType)
 	{
 		transform = new Transform();
 		physics = new Rigidbody(transform);
@@ -34,7 +39,7 @@ public:
 
 		isPendingDestroy = false;
 
-	}
+	}*/
 
 	~Object() {
 		delete transform;

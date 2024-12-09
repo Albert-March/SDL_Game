@@ -1,11 +1,11 @@
 #pragma once
-#include "Object.h"
+#include "ImageObject.h"
 #include "RenderManager.h"
 
-class TestObject : public Object {
+class TestObject : public ImageObject {
 public:
 	TestObject()
-		: Object("resources/cat.jpg", Vector2(0.0f, 0.0f), Vector2(1500.f, 1500.f), false) {
+		: ImageObject("resources/cat.jpg", Vector2(0.0f, 0.0f), Vector2(1500.f, 1500.f)) {
 
 		//RAND IN ALL THE WINDOW
 		Vector2 randomPos = Vector2(rand() % RM->WINDOW_WIDTH, rand() % RM->WINDOW_HEIGHT);
@@ -18,7 +18,7 @@ public:
 	}
 
 	TestObject(Vector2 pos, Vector2 startVelocity)
-		: Object("resources/cat.jpg", Vector2(0.f, 0.f), Vector2(1500.f, 1500.f), false) {
+		: ImageObject("resources/cat.jpg", Vector2(0.f, 0.f), Vector2(1500.f, 1500.f)) {
 
 		transform->position = pos;
 		physics->AddTorque(3000.0f);
