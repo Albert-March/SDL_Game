@@ -11,6 +11,7 @@ void Game::Init()
 
 	RM->LoadTexture("resources/cat.jpg");
 	RM->LoadTexture("resources/bullet.png");
+	RM->LoadTexture("resources/PS_Enemy.png");
 
 	assert(SM.AddScene("Main Menu", new MainMenu()));
 	assert(SM.AddScene("Gameplay", new Gameplay()));
@@ -34,7 +35,7 @@ void Game::Render()
 
 void Game::Release()
 {
-	SM.GetCurrentScene()->OnEnter();
+	//SM.GetCurrentScene()->OnEnter();
 
 	RM->Release();
 }

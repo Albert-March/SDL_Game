@@ -9,7 +9,7 @@ public:
 		: ImageObject("resources/bullet.png", Vector2(0.f, 0.f), Vector2(200.f, 500.f)) {
 
 		transform->position = pos;
-		transform->scale = Vector2(1.f, 1.f);
+		transform->scale = Vector2(0.05f, 0.1f);
 		physics->AddForce(startVelocity);
 	}
 

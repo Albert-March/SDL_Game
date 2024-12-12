@@ -26,7 +26,9 @@
   <ItemGroup>
     <ClInclude Include="source\AABB.h" />
     <ClInclude Include="source\AnimatedImageRenderer.h" />
+    <ClInclude Include="source\AudioManager.h" />
     <ClInclude Include="source\Bullet.h" />
+    <ClInclude Include="source\EnemySpaceship.h" />
     <ClInclude Include="source\FpsCounterUI.h" />
     <ClInclude Include="source\Game.h" />
     <ClInclude Include="source\Gameplay.h" />
