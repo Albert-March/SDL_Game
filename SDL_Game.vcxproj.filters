@@ -92,5 +92,11 @@
     <ClInclude Include="source\TextObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="source\PlayerSpaceship.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Bullet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

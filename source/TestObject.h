@@ -21,7 +21,7 @@ public:
 		: ImageObject("resources/cat.jpg", Vector2(0.f, 0.f), Vector2(1500.f, 1500.f)) {
 
 		transform->position = pos;
-		physics->AddTorque(3000.0f);
+		//physics->AddTorque(3000.0f);
 		transform->scale = Vector2(1.f, 1.f);
 		physics->AddForce(startVelocity);
 	}

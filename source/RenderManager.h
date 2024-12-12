@@ -34,6 +34,8 @@ public:
 	void LoadFont(std::string path);
 	TTF_Font* GetFont(std::string path);
 
+	bool IsKeyPressed(SDL_Scancode key);
+
 private:
 	RenderManager() = default;
 	RenderManager(RenderManager&) = default;

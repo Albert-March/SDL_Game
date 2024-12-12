@@ -10,6 +10,7 @@ void Game::Init()
 	RM->Init();
 
 	RM->LoadTexture("resources/cat.jpg");
+	RM->LoadTexture("resources/bullet.png");
 
 	assert(SM.AddScene("Main Menu", new MainMenu()));
 	assert(SM.AddScene("Gameplay", new Gameplay()));

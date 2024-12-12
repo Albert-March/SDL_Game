@@ -26,6 +26,7 @@
   <ItemGroup>
     <ClInclude Include="source\AABB.h" />
     <ClInclude Include="source\AnimatedImageRenderer.h" />
+    <ClInclude Include="source\Bullet.h" />
     <ClInclude Include="source\FpsCounterUI.h" />
     <ClInclude Include="source\Game.h" />
     <ClInclude Include="source\Gameplay.h" />
@@ -34,6 +35,7 @@
     <ClInclude Include="source\InputManager.h" />
     <ClInclude Include="source\MainMenu.h" />
     <ClInclude Include="source\Object.h" />
+    <ClInclude Include="source\PlayerSpaceship.h" />
     <ClInclude Include="source\Renderer.h" />
     <ClInclude Include="source\RenderManager.h" />
     <ClInclude Include="source\Rigidbody.h" />
