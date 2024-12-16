@@ -1,11 +1,11 @@
 #pragma once
-#include "ImageObject.h"
-#include "RenderManager.h"
+#include "../ImageObject.h"
+#include "../RenderManager.h"
 
-class Bullet : public ImageObject {
+class EnemyBullet : public ImageObject {
 public:
 
-	Bullet(Vector2 pos, Vector2 startVelocity)
+	EnemyBullet(Vector2 pos, Vector2 startVelocity)
 		: ImageObject("resources/bullet.png", Vector2(0.f, 0.f), Vector2(1200.f, 1200.f)) {
 
 		transform->position = pos;
@@ -22,7 +22,7 @@ public:
 	}
 
 	void OnCollisionEnter(Object* other) override {
-		
+
 	}
 
 	void Render() override {

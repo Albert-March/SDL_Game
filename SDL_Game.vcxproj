@@ -30,7 +30,8 @@
     <ClInclude Include="source\AudioManager.h" />
     <ClInclude Include="source\Enemies\Aiming.h" />
     <ClInclude Include="source\Enemies\Basic.h" />
-    <ClInclude Include="source\Bullet.h" />
+    <ClInclude Include="source\Enemies\EnemyBullet.h" />
+    <ClInclude Include="source\Players\PlayerBullet.h" />
     <ClInclude Include="source\Enemies\Enemy.h" />
     <ClInclude Include="source\Enemies\Exploding.h" />
     <ClInclude Include="source\Enemies\Shooting.h" />

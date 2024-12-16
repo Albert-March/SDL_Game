@@ -25,7 +25,7 @@ private:
 	float spawnCooldown = 5.0f;
 
 	int gameMode = 2;
-	int enemies = 2;
+	int enemies = 4;
 
 	Player* activePlayer = nullptr;
 
@@ -74,7 +74,7 @@ private:
 	void SpawnEnemy() {
 		switch (enemies) {
 		case 1:
-			//SPAWN.SpawnObject(new Basic(Vector2(50, 40)));
+			SPAWN.SpawnObject(new Basic(Vector2(50, 40), activePlayer));
 			break;
 		case 2:
 			SPAWN.SpawnObject(new Seeker(Vector2(50, -20), activePlayer));
@@ -83,7 +83,7 @@ private:
 			//SPAWN.SpawnObject(new Shooting(Vector2(50, 40), activePlayer));
 			break;
 		case 4:
-			//SPAWN.SpawnObject(new Aiming(Vector2(50, 40), activePlayer));
+			SPAWN.SpawnObject(new Aiming(Vector2(50, 40), activePlayer));
 			break;
 		case 5:
 			//SPAWN.SpawnObject(new Exploding(Vector2(50, 40), activePlayer));

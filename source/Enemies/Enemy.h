@@ -4,7 +4,8 @@
 #include "../InputManager.h"
 
 class Enemy : public ImageObject {
-
+protected:
+    bool isMoving = true;
 public:
     Enemy(std::string imagePath, Vector2 position, Vector2 size)
         : ImageObject(imagePath, Vector2(0.f, 0.f), size) {
@@ -24,7 +25,6 @@ protected:
     virtual void Movement() {
         static size_t currentStep = 0;
         static float phaseStartTime = 0;
-        static bool isMoving = true;
         static const float moveDuration = 1.0f;
         static const float waitDuration = 0.5f;
 
@@ -47,11 +47,9 @@ protected:
             }
         }
         else {
-            if (currentTime - phaseStartTime >= waitDuration) {
-                isMoving = true;
-                phaseStartTime = currentTime;
-                currentStep = (currentStep + 1) % pattern.size();
-            }
+            isMoving = true;
+            phaseStartTime = currentTime;
+            currentStep = (currentStep + 1) % pattern.size();
         }
     }
 

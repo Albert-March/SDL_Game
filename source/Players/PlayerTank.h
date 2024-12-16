@@ -3,7 +3,7 @@
 #include "../ImageObject.h"
 #include "../RenderManager.h"
 #include "../TimeManager.h"
-#include "../Bullet.h"
+#include "../Players/PlayerBullet.h"
 
 class Cannon : public ImageObject {
 public:
@@ -157,7 +157,7 @@ public:
         float angleDegrees = angleRadians * (180.0f / M_PI);
         angleDegrees -= 90.0f;
 
-        Bullet* bullet = new Bullet(edgePosition, bulletVelocity);
+        PlayerBullet* bullet = new PlayerBullet(edgePosition, bulletVelocity);
 
         bullet->SetRotation(angleDegrees);
 

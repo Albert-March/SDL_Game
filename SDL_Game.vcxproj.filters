@@ -95,7 +95,7 @@
     <ClInclude Include="source\Players\PlayerSpaceship.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\Bullet.h">
+    <ClInclude Include="source\Players\PlayerBullet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\AudioManager.h">
@@ -129,6 +129,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\Enemies\Exploding.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Enemies\EnemyBullet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

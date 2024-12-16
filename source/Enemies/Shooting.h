@@ -19,7 +19,7 @@ public:
 	}
 
 	void OnCollisionEnter(Object* other) override {
-		if (Bullet* to = reinterpret_cast<Bullet*>(other)) {
+		if (PlayerBullet* to = reinterpret_cast<PlayerBullet*>(other)) {
 			Destroy();
 			other->Destroy();
 		}
