@@ -31,6 +31,8 @@ public:
 		intersectionY |= other->topLeft.y >= topLeft.y && other->topLeft.y <= topLeft.y + size.y;
 
 		return intersectionX && intersectionY;
+
+		
 	}
 
 };
