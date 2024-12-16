@@ -5,6 +5,7 @@
 #include "../TimeManager.h"
 #include "../Players/Bullet.h"
 #include "../InputManager.h"
+#include "../SceneManager.h"
 
 class PlayerSpaceship : public Player {
 public:
@@ -75,6 +76,33 @@ public:
     }
 
     void OnCollisionEnter(Object* other) override {
-        Destroy();
+        if (Enemy* enemy = dynamic_cast<Enemy*>(other)) {
+            float currentTime = TIME.GetElapsedTime();
+
+            //2 segons de cooldown
+            if (currentTime - lastDamageTime >= 2.0f) {
+
+                lives--;
+                lastDamageTime = currentTime;
+
+            }
+        }
+        if (Bullet* bullet = dynamic_cast<Bullet*>(other)) {
+            if (!bullet->IsFriendly()) {
+                float currentTime = TIME.GetElapsedTime();
+
+                if (currentTime - lastDamageTime >= 2.0f) {
+
+                    lives--;
+                    lastDamageTime = currentTime;
+
+                }
+            }
+        }
+        if (lives <= 0) {
+            Destroy();
+            SM.SetNextScene("SpaceInvaders");
+            lives = 3; //Torna a comensar
+        }
     }
 };

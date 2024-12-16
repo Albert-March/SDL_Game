@@ -4,6 +4,7 @@
 #include "../RenderManager.h"
 #include "../TimeManager.h"
 #include "../Players/Bullet.h"
+#include "../InputManager.h"
 
 class Cannon : public ImageObject {
 public:
@@ -195,19 +196,26 @@ public:
 
                 lives--;
                 lastDamageTime = currentTime;
-
-                if (lives <= 0) {
-                    Destroy();
-                    cannon->Destroy();
-                }
+                
             }
         }
         if (Bullet* bullet = dynamic_cast<Bullet*>(other)) {
             if (!bullet->IsFriendly()) {
+                float currentTime = TIME.GetElapsedTime();
 
-                Destroy();
-                other->Destroy();
+                if (currentTime - lastDamageTime >= 2.0f) {
+
+                    lives--;
+                    lastDamageTime = currentTime;
+
+                }
             }
+        }
+        if (lives <= 0) {
+            Destroy();
+            cannon->Destroy();
+            SM.SetNextScene("Tanks");
+            lives = 3; //Torna a comensar
         }
     }
 };
