@@ -69,12 +69,6 @@ TTF_Font* RenderManager::GetFont(std::string path)
 	return nullptr;
 }
 
-bool RenderManager::IsKeyPressed(SDL_Scancode key)
-{
-	const Uint8* state = SDL_GetKeyboardState(nullptr);
-	return state[key];
-}
-
 RenderManager::~RenderManager()
 {
 	for (std::map<std::string, SDL_Texture*>::iterator it = textures.begin(); it != textures.end(); it++)

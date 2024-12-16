@@ -37,7 +37,7 @@ public:
 		destRect.h = transform->size.y * transform->scale.y;
 	}
 
-	virtual void Render()
+	virtual void Render() override
 	{
 		//SDL_RenderCopy(RM->GetRenderer(), RM->GetTexture(targetPath), &sourceRect, &destRect);
 

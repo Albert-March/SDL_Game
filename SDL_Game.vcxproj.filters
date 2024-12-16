@@ -92,7 +92,7 @@
     <ClInclude Include="source\TextObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\PlayerSpaceship.h">
+    <ClInclude Include="source\Players\PlayerSpaceship.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\Bullet.h">
@@ -101,7 +101,34 @@
     <ClInclude Include="source\AudioManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\EnemySpaceship.h">
+    <ClInclude Include="source\Players\PlayerTank.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Players\PlayerSwatter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\AnimatedImageObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Players\Player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Enemies\Enemy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Enemies\Basic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Enemies\Seeker.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Enemies\Shooting.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Enemies\Aiming.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Enemies\Exploding.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

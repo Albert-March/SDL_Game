@@ -12,6 +12,10 @@ public:
 	inline void Normalize()
 	{
 		float length = sqrt(x * x + y * y);
+		if (length > 0) {
+			x /= length;
+			y /= length;
+		}
 	}
 	inline Vector2 const operator+(const Vector2& other) const
 	{

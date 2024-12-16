@@ -12,6 +12,10 @@ void Game::Init()
 	RM->LoadTexture("resources/cat.jpg");
 	RM->LoadTexture("resources/bullet.png");
 	RM->LoadTexture("resources/PS_Enemy.png");
+	RM->LoadTexture("resources/Tank.png");
+	RM->LoadTexture("resources/Spaceship.png");
+	RM->LoadTexture("resources/Cannon.png");
+	RM->LoadTexture("resources/animation.png");
 
 	assert(SM.AddScene("Main Menu", new MainMenu()));
 	assert(SM.AddScene("Gameplay", new Gameplay()));

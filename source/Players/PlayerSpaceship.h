@@ -1,14 +1,16 @@
 #pragma once
-#include "ImageObject.h"
-#include "RenderManager.h"
-#include "TimeManager.h"
-#include "Bullet.h"
+#include "Player.h"
+#include "../ImageObject.h"
+#include "../RenderManager.h"
+#include "../TimeManager.h"
+#include "../Bullet.h"
+#include "../InputManager.h"
 
-class PlayerSpaceship : public ImageObject {
+class PlayerSpaceship : public Player {
 public:
 
 	PlayerSpaceship(Vector2 pos)
-		: ImageObject("resources/cat.jpg", Vector2(0.f, 0.f), Vector2(1500.f, 1500.f)) {
+		: Player("resources/Spaceship.png", Vector2(0.f, 0.f), Vector2(256.f, 256.f)) {
 		transform->position = pos;
 		transform->rotation = 0.0f;
 		transform->scale = Vector2(1.f, 1.f);
@@ -17,15 +19,15 @@ public:
     void Update() override {
         Movement();
         Shooting();
-        ImageObject::Update();
+        Player::Update();
     }
 
-    void Movement() {
+    void Movement() override {
         float speed = 10.0f;
-        if (RM->IsKeyPressed(SDL_SCANCODE_LEFT)) {
+        if (Input.GetEvent(SDLK_LEFT, HOLD) || Input.GetEvent(SDLK_a, HOLD)) {
             transform->position.x -= speed;
         }
-        if (RM->IsKeyPressed(SDL_SCANCODE_RIGHT)) {
+        if (Input.GetEvent(SDLK_RIGHT, HOLD) || Input.GetEvent(SDLK_d, HOLD)) {
             transform->position.x += speed;
         }
 
@@ -39,32 +41,25 @@ public:
     }
 
     float lastShotTime = 0.0f;
-    const float shootCooldown = 1.0f;
-    bool spaceHeld = false;
+    const float shootCooldown = 0.4f;
 
     void Shooting() {
         float currentTime = TIME.GetElapsedTime();
 
-        if (RM->IsKeyPressed(SDL_SCANCODE_SPACE)) {
-            if (!spaceHeld) {
-                FireBullet();
-                lastShotTime = currentTime;
-                spaceHeld = true;
-            }
-            else if (currentTime - lastShotTime >= shootCooldown) {
-                FireBullet();
-                lastShotTime = currentTime;
-            }
+        if (Input.GetEvent(SDLK_SPACE, DOWN)) {
+            FireBullet();
+            lastShotTime = currentTime;
         }
-        else {
-            spaceHeld = false;
+        if (Input.GetEvent(SDLK_SPACE, HOLD) && currentTime - lastShotTime >= shootCooldown) {
+            FireBullet();
+            lastShotTime = currentTime;
         }
     }
 
     void FireBullet() {
         float halfPlayerHeight = transform->size.y * 0.5f * transform->scale.y;
-        float halfBulletHeight = 50.0f;
-        float bulletYPosition = transform->position.y - halfPlayerHeight - halfBulletHeight;
+
+        float bulletYPosition = transform->position.y - halfPlayerHeight;
 
         Vector2 bulletPosition = Vector2(transform->position.x, bulletYPosition);
         Vector2 bulletVelocity = Vector2(0, -8000.0f);
@@ -76,7 +71,7 @@ public:
     }
 
     void Render() override {
-        ImageObject::Render();
+        Player::Render();
     }
 
     void OnCollisionEnter(Object* other) override {
