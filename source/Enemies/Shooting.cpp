@@ -16,11 +16,13 @@ void Shooting::Movement()
 
 void Shooting::OnCollisionEnter(Object* other)
 {
-	//if (Bullet* to = reinterpret_cast<Bullet*>(other)) {
-	//	Destroy();
-	//	other->Destroy();
- //       CleanUp();
-	//}
+    if (Bullet* bullet = dynamic_cast<Bullet*>(other)) {
+        if (bullet->IsFriendly()) {
+
+            Destroy();
+            other->Destroy();
+        }
+    }
 }
 
 void Shooting::Render()
@@ -49,7 +51,7 @@ void Shooting::Shoot()
         float angleDegrees = angleRadians * (180.0f / M_PI);
         angleDegrees -= 90.0f;
 
-        Bullet* bullet = new Bullet(transform->position, bulletVelocity);
+        Bullet* bullet = new Bullet(transform->position, bulletVelocity, 0);
 
         bullet->SetRotation(transform->rotation);
 

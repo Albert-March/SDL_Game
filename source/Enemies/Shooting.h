@@ -2,7 +2,7 @@
 #include "../Enemies/Enemy.h"
 #include "../RenderManager.h"
 #include "../Players/Player.h"
-#include "../Bullet.h"
+#include "../Players/Bullet.h"
 
 class Shooting : public Enemy {
 
@@ -15,15 +15,7 @@ public:
 
 	void Movement() override;
 
-	void OnCollisionEnter(Object* other) override {
-		if (Bullet* bullet = dynamic_cast<Bullet*>(other)) {
-			if (bullet->IsFriendly()) {
-
-				Destroy();
-				other->Destroy();
-			}
-		}
-	}
+	void OnCollisionEnter(Object* other) override;
 
 	void Render() override;
 
