@@ -25,7 +25,7 @@ void Game::Init()
 	assert(SM.AddScene("Tanks", new GameplayTanks()));
 	assert(SM.AddScene("Splat", new GameplaySwatter()));
 
-	assert(SM.InitFirstScene("SpaceInvaders"));
+	assert(SM.InitFirstScene("Main Menu"));
 }
 
 void Game::Update()
