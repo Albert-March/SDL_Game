@@ -1,11 +1,8 @@
 #pragma once
 #include "Scene.h"
 #include "Spawner.h"
-#include "TestObject.h"
 #include "TextObject.h"
 
-#include "../source/Players/PlayerSpaceship.h"
-#include "../source/Players/PlayerTank.h"
 #include "../source/Players/PlayerSwatter.h"
 
 #include "../source/Enemies/Enemy.h"
@@ -18,61 +15,49 @@
 #include "AudioManager.h"
 #include "InputManager.h"
 
-class Gameplay : public Scene
+class GameplaySwatter : public Scene
 {
 private:
 	float lastSpawnTime = -5.0f;
 	float spawnCooldown = 5.0f;
 
-	int gameMode = 2;
-	int enemies = 4;
-
 	Player* activePlayer = nullptr;
+	int playerLives = 3;
+	int enemyType;
 
 public:
-	Gameplay() = default;
+	GameplaySwatter() = default;
 
-	void OnEnter() override
-	{
-		//UI
-		Object* textObj = new TextObject("Buscam");
-		textObj->GetTransform()->position = Vector2(100, 100);
-		SPAWN.SpawnObject(textObj);
-
-		switch (gameMode)
-		{
-		case 1:
-			//PlayerSpaceship
-			activePlayer = new PlayerSpaceship(Vector2(RM->WINDOW_WIDTH / 2, RM->WINDOW_HEIGHT - 100));
-			break;
-		case 2:
-			//PLayerTank
-			activePlayer = new PlayerTank(Vector2(RM->WINDOW_WIDTH / 2, RM->WINDOW_HEIGHT - 100));
-			break;
-		case 3:
-			//PlayerSwatter
-			activePlayer = new PlayerSwatter(Vector2(RM->WINDOW_WIDTH / 2, RM->WINDOW_HEIGHT - 100));
-			break;
-		}
-		if (activePlayer) {
-			SPAWN.SpawnObject(activePlayer);
-		}
+	void OnEnter() override {
+		activePlayer = new PlayerSwatter(Vector2(RM->WINDOW_WIDTH / 2, RM->WINDOW_HEIGHT - 100));
+		SPAWN.SpawnObject(activePlayer);
 	}
-
 
 	void Update() override {
 		float currentTime = TIME.GetElapsedTime();
 
 		if (currentTime - lastSpawnTime >= spawnCooldown) {
+			enemyType = 4; // = rand() % 2 + 1;
 			SpawnEnemy();
 			lastSpawnTime = currentTime;
 		}
+		playerLives = activePlayer->lives;
+
+		if (Input.GetEvent(SDLK_1, DOWN))
+			SM.SetNextScene("SpaceInvaders");
+		if (Input.GetEvent(SDLK_2, DOWN))
+			SM.SetNextScene("Tanks");
+
 		Scene::Update();
+	}
+
+	void Render() override {
+		Scene::Render();
 	}
 
 private:
 	void SpawnEnemy() {
-		switch (enemies) {
+		switch (enemyType) {
 		case 1:
 			SPAWN.SpawnObject(new Basic(Vector2(50, 40), activePlayer));
 			break;
@@ -90,19 +75,4 @@ private:
 			break;
 		}
 	}
-
-		
-		//audio
-		//AM.LoadSong("discord-notification");
-		//AM.PlaySong("discord-notification");
-
-		//AM.LoadClip("shrek");
-
-
-	/*void Update() override
-	{
-		Scene::Update();
-		if(Input.GetEvent(SDLK_SPACE, DOWN))
-			AM.PlayClip("shrek", 0);
-	}*/
 };

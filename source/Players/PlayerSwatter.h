@@ -13,7 +13,7 @@ public:
 	float pauseStartTime = 0.0f;
 
 	PlayerSwatter(Vector2 pos)
-		: Player("resources/cat.jpg", pos, Vector2(1500.f, 1500.f)) {
+		: Player("resources/Swatter.png", pos, Vector2(1500.f, 1500.f)) {
 	}
 
 	void Update() override {

@@ -4,8 +4,7 @@
 #include "../InputManager.h"
 
 class Enemy : public ImageObject {
-protected:
-    bool isMoving = true;
+
 public:
     Enemy(std::string imagePath, Vector2 position, Vector2 size)
         : ImageObject(imagePath, Vector2(0.f, 0.f), size) {
@@ -30,24 +29,17 @@ protected:
 
         float currentTime = TIME.GetElapsedTime();
 
-        if (isMoving) {
-            if (currentTime - phaseStartTime < moveDuration) {
-                Vector2 direction = pattern[currentStep];
-                direction.Normalize();
+        if (currentTime - phaseStartTime < moveDuration) {
+            Vector2 direction = pattern[currentStep];
+            direction.Normalize();
 
-                float speed = 100.0f * TIME.GetDeltaTime();
+            float speed = 100.0f * TIME.GetDeltaTime();
 
-                transform->position = transform->position + direction * speed;
+            transform->position = transform->position + direction * speed;
 
-                KeepInsideWindow();
-            }
-            else {
-                isMoving = false;
-                phaseStartTime = currentTime;
-            }
+            KeepInsideWindow();
         }
         else {
-            isMoving = true;
             phaseStartTime = currentTime;
             currentStep = (currentStep + 1) % pattern.size();
         }

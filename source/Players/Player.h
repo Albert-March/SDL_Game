@@ -6,10 +6,11 @@
 
 class Player : public ImageObject {
 protected:
-    int lives = 3;
     float lastDamageTime;
 
 public:
+    int lives = 3;
+
     Player(std::string imagePath, Vector2 position, Vector2 size)
         : ImageObject(imagePath, Vector2(0.f, 0.f), size) {
         transform->position = position;

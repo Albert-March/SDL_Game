@@ -1,13 +1,15 @@
 #pragma once
 #include "../Enemies/Enemy.h"
 #include "../RenderManager.h"
-#include "EnemyBullet.h"
+#include "../Players/Bullet.h"
 
 class Aiming : public Enemy {
 private:
 	Player* playerReference;
-	float lastShotTime = 0.0f;
-	const float shootCooldown = 2.0f;
+	float phaseStartTime = 0.0f;
+	float stopDuration = 2.0f;
+	float moveDuration = 4.0f;
+	bool isStopped = false;
 
 public:
 	Aiming(Vector2 pos, Player* player)
@@ -16,8 +18,25 @@ public:
 	}
 
 	void Update() override {
-		Movement();
-		Shoot();
+		float currentTime = TIME.GetElapsedTime();
+
+		if (isStopped) {
+			if (currentTime - phaseStartTime >= stopDuration) {
+				isStopped = false;
+				phaseStartTime = currentTime;
+			}
+		}
+		else {
+			if (currentTime - phaseStartTime >= moveDuration) {
+				isStopped = true;
+				Shoot();
+				phaseStartTime = currentTime;
+			}
+			else {
+				Movement();
+			}
+		}
+
 		Enemy::Update();
 	}
 
@@ -42,7 +61,7 @@ public:
 		float angleDegrees = angleRadians * (180.0f / M_PI);
 		angleDegrees -= 90.0f;
 
-		EnemyBullet* bullet = new EnemyBullet(edgePosition, bulletVelocity);
+		Bullet* bullet = new Bullet(edgePosition, bulletVelocity, 0);
 
 		bullet->SetRotation(angleDegrees);
 
@@ -67,9 +86,12 @@ public:
 	}
 
 	void OnCollisionEnter(Object* other) override {
-		if (PlayerBullet* to = dynamic_cast<PlayerBullet*>(other)) {
-			Destroy();
-			other->Destroy();
+		if (Bullet* bullet = dynamic_cast<Bullet*>(other)) {
+			if (bullet->IsFriendly()) {
+				
+				Destroy();
+				other->Destroy();
+			}	
 		}
 	}
 

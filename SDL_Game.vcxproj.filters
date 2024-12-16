@@ -68,7 +68,7 @@
     <ClInclude Include="source\MainMenu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\Gameplay.h">
+    <ClInclude Include="source\GameplayTanks.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\SceneManager.h">
@@ -95,7 +95,7 @@
     <ClInclude Include="source\Players\PlayerSpaceship.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\Players\PlayerBullet.h">
+    <ClInclude Include="source\Players\Bullet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\AudioManager.h">
@@ -131,7 +131,10 @@
     <ClInclude Include="source\Enemies\Exploding.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\Enemies\EnemyBullet.h">
+    <ClInclude Include="source\GameplaySpaceInvaders.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GameplaySwatter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

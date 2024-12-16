@@ -44,9 +44,12 @@ public:
     }
 
 	void OnCollisionEnter(Object* other) override {
-        if (PlayerBullet* to = reinterpret_cast<PlayerBullet*>(other)) {
-            Destroy();
-            other->Destroy();
+        if (Bullet* bullet = dynamic_cast<Bullet*>(other)) {
+            if (bullet->IsFriendly()) {
+
+                Destroy();
+                other->Destroy();
+            }
         }
 	}
 
