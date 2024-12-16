@@ -14,6 +14,7 @@
 
 #include "AudioManager.h"
 #include "InputManager.h"
+#include "SceneManager.h"
 
 class GameplaySwatter : public Scene
 {
@@ -25,7 +26,7 @@ private:
 	int playerLives = 3;
 	int enemyType;
 
-	std::vector<TextObject*> uiElements;
+
 	TextObject* livesText;
 	TextObject* scoreText;
 	int score = 0;
@@ -65,10 +66,6 @@ public:
 
 	void Render() override {
 		Scene::Render();
-
-		for (TextObject* ui : uiElements) {
-			ui->Render();
-		}
 	}
 
 private:
@@ -97,7 +94,6 @@ private:
 		TextObject* title = new TextObject("SWATTER");
 		title->GetTransform()->position = Vector2(RM->WINDOW_WIDTH - 200, 100.0f);
 		title->GetTransform()->scale = Vector2(1.5f, 1.5f);
-		uiElements.push_back(title);
 		SPAWN.SpawnObject(title);
 
 
@@ -106,7 +102,6 @@ private:
 		livesText->GetTransform()->position = Vector2(RM->WINDOW_WIDTH - 200, 200.0f);
 		livesText->GetTransform()->scale = Vector2(1.5f, 1.5f);
 
-		uiElements.push_back(livesText);
 		SPAWN.SpawnObject(livesText);
 
 		// Puntuación
@@ -114,7 +109,6 @@ private:
 		scoreText->GetTransform()->position = Vector2(RM->WINDOW_WIDTH - 200, 150.0f);
 		scoreText->GetTransform()->scale = Vector2(1.5f, 1.5f);
 
-		uiElements.push_back(scoreText);
 
 		SPAWN.SpawnObject(scoreText);
 	}
