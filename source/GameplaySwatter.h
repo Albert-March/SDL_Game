@@ -25,12 +25,19 @@ private:
 	int playerLives = 3;
 	int enemyType;
 
+	std::vector<TextObject*> uiElements;
+	TextObject* livesText;
+	TextObject* scoreText;
+	int score = 0;
+
 public:
 	GameplaySwatter() = default;
 
 	void OnEnter() override {
 		activePlayer = new PlayerSwatter(Vector2(RM->WINDOW_WIDTH / 2, RM->WINDOW_HEIGHT - 100));
 		SPAWN.SpawnObject(activePlayer);
+
+		InitUI();
 	}
 
 	void Update() override {
@@ -42,6 +49,11 @@ public:
 			lastSpawnTime = currentTime;
 		}
 		playerLives = activePlayer->lives;
+		livesText->SetText("Lives: " + std::to_string(playerLives));
+
+
+		score += 1;
+		scoreText->SetText("Score: " + std::to_string(score));
 
 		if (Input.GetEvent(SDLK_1, DOWN))
 			SM.SetNextScene("SpaceInvaders");
@@ -53,6 +65,10 @@ public:
 
 	void Render() override {
 		Scene::Render();
+
+		for (TextObject* ui : uiElements) {
+			ui->Render();
+		}
 	}
 
 private:
@@ -74,5 +90,32 @@ private:
 			//SPAWN.SpawnObject(new Exploding(Vector2(50, 40), activePlayer));
 			break;
 		}
+	}
+
+	void InitUI() {
+		// Título del juego
+		TextObject* title = new TextObject("SWATTER");
+		title->GetTransform()->position = Vector2(RM->WINDOW_WIDTH - 200, 100.0f);
+		title->GetTransform()->scale = Vector2(1.5f, 1.5f);
+		uiElements.push_back(title);
+		SPAWN.SpawnObject(title);
+
+
+		// Vidas del jugador
+		livesText = new TextObject("Lives: " + std::to_string(playerLives));
+		livesText->GetTransform()->position = Vector2(RM->WINDOW_WIDTH - 200, 200.0f);
+		livesText->GetTransform()->scale = Vector2(1.5f, 1.5f);
+
+		uiElements.push_back(livesText);
+		SPAWN.SpawnObject(livesText);
+
+		// Puntuación
+		scoreText = new TextObject("Score: " + std::to_string(score));
+		scoreText->GetTransform()->position = Vector2(RM->WINDOW_WIDTH - 200, 150.0f);
+		scoreText->GetTransform()->scale = Vector2(1.5f, 1.5f);
+
+		uiElements.push_back(scoreText);
+
+		SPAWN.SpawnObject(scoreText);
 	}
 };
