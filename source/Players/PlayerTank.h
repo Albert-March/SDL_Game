@@ -3,7 +3,7 @@
 #include "../ImageObject.h"
 #include "../RenderManager.h"
 #include "../TimeManager.h"
-#include "../Bullet.h"
+#include "../Players/Bullet.h"
 
 class Cannon : public ImageObject {
 public:
@@ -157,7 +157,7 @@ public:
         float angleDegrees = angleRadians * (180.0f / M_PI);
         angleDegrees -= 90.0f;
 
-        Bullet* bullet = new Bullet(edgePosition, bulletVelocity);
+        Bullet* bullet = new Bullet(edgePosition, bulletVelocity, 1);
 
         bullet->SetRotation(angleDegrees);
 
@@ -200,6 +200,13 @@ public:
                     Destroy();
                     cannon->Destroy();
                 }
+            }
+        }
+        if (Bullet* bullet = dynamic_cast<Bullet*>(other)) {
+            if (!bullet->IsFriendly()) {
+
+                Destroy();
+                other->Destroy();
             }
         }
     }

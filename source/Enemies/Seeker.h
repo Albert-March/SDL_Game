@@ -44,9 +44,12 @@ public:
     }
 
 	void OnCollisionEnter(Object* other) override {
-        if (Bullet* to = reinterpret_cast<Bullet*>(other)) {
-            Destroy();
-            other->Destroy();
+        if (Bullet* bullet = dynamic_cast<Bullet*>(other)) {
+            if (bullet->IsFriendly()) {
+
+                Destroy();
+                other->Destroy();
+            }
         }
 	}
 
@@ -57,13 +60,9 @@ public:
     void FollowPlayer(Player* playerReference) {
         Vector2 playerPos = playerReference->GetTransform()->position;
         Vector2 seekerPos = transform->position;
-        Vector2 direction(playerPos.x - seekerPos.x, playerPos.y - seekerPos.y);
+        Vector2 direction = playerPos - seekerPos;
 
-        float magnitude = std::sqrt(direction.x * direction.x + direction.y * direction.y);
-        if (magnitude > 0) {
-            direction.x /= magnitude;
-            direction.y /= magnitude;
-        }
+        direction.Normalize();
 
         float speed = 200.0f * TIME.GetDeltaTime();
         transform->position = transform->position + direction * speed;

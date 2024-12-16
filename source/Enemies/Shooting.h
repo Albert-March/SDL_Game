@@ -15,7 +15,15 @@ public:
 
 	void Movement() override;
 
-	void OnCollisionEnter(Object* other) override;
+	void OnCollisionEnter(Object* other) override {
+		if (Bullet* bullet = dynamic_cast<Bullet*>(other)) {
+			if (bullet->IsFriendly()) {
+
+				Destroy();
+				other->Destroy();
+			}
+		}
+	}
 
 	void Render() override;
 

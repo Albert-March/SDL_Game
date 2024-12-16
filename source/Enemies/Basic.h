@@ -1,6 +1,7 @@
 #pragma once
 #include "../Enemies/Enemy.h"
 #include "../RenderManager.h"
+#include "../Players/Bullet.h"
 
 class Basic : public Enemy {
 
@@ -20,9 +21,12 @@ public:
 	}
 
 	void OnCollisionEnter(Object* other) override {
-		if (Bullet* to = reinterpret_cast<Bullet*>(other)) {
-			Destroy();
-			other->Destroy();
+		if (Bullet* bullet = dynamic_cast<Bullet*>(other)) {
+			if (bullet->IsFriendly()) {
+
+				Destroy();
+				other->Destroy();
+			}
 		}
 	}
 

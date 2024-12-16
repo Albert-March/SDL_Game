@@ -31,13 +31,14 @@
     <ClInclude Include="source\AudioManager.h" />
     <ClInclude Include="source\Enemies\Aiming.h" />
     <ClInclude Include="source\Enemies\Basic.h" />
-    <ClInclude Include="source\Bullet.h" />
+    <ClInclude Include="source\GameplaySwatter.h" />
+    <ClInclude Include="source\Players\Bullet.h" />
     <ClInclude Include="source\Enemies\Enemy.h" />
     <ClInclude Include="source\Enemies\Exploding.h" />
     <ClInclude Include="source\Enemies\Shooting.h" />
     <ClInclude Include="source\FpsCounterUI.h" />
     <ClInclude Include="source\Game.h" />
-    <ClInclude Include="source\Gameplay.h" />
+    <ClInclude Include="source\GameplayTanks.h" />
     <ClInclude Include="source\ImageObject.h" />
     <ClInclude Include="source\ImageRenderer.h" />
     <ClInclude Include="source\InputManager.h" />
@@ -53,6 +54,7 @@
     <ClInclude Include="source\Scene.h" />
     <ClInclude Include="source\SceneManager.h" />
     <ClInclude Include="source\Enemies\Seeker.h" />
+    <ClInclude Include="source\GameplaySpaceInvaders.h" />
     <ClInclude Include="source\Spawner.h" />
     <ClInclude Include="source\TestObject.h" />
     <ClInclude Include="source\TextObject.h" />

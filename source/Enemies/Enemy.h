@@ -24,34 +24,24 @@ protected:
     virtual void Movement() {
         static size_t currentStep = 0;
         static float phaseStartTime = 0;
-        static bool isMoving = true;
         static const float moveDuration = 1.0f;
         static const float waitDuration = 0.5f;
 
         float currentTime = TIME.GetElapsedTime();
 
-        if (isMoving) {
-            if (currentTime - phaseStartTime < moveDuration) {
-                Vector2 direction = pattern[currentStep];
-                direction.Normalize();
+        if (currentTime - phaseStartTime < moveDuration) {
+            Vector2 direction = pattern[currentStep];
+            direction.Normalize();
 
-                float speed = 100.0f * TIME.GetDeltaTime();
+            float speed = 100.0f * TIME.GetDeltaTime();
 
-                transform->position = transform->position + direction * speed;
+            transform->position = transform->position + direction * speed;
 
-                KeepInsideWindow();
-            }
-            else {
-                isMoving = false;
-                phaseStartTime = currentTime;
-            }
+            KeepInsideWindow();
         }
         else {
-            if (currentTime - phaseStartTime >= waitDuration) {
-                isMoving = true;
-                phaseStartTime = currentTime;
-                currentStep = (currentStep + 1) % pattern.size();
-            }
+            phaseStartTime = currentTime;
+            currentStep = (currentStep + 1) % pattern.size();
         }
     }
 

@@ -3,7 +3,7 @@
 #include "../ImageObject.h"
 #include "../RenderManager.h"
 #include "../TimeManager.h"
-#include "../Bullet.h"
+#include "../Players/Bullet.h"
 #include "../InputManager.h"
 
 class PlayerSpaceship : public Player {
@@ -64,7 +64,7 @@ public:
         Vector2 bulletPosition = Vector2(transform->position.x, bulletYPosition);
         Vector2 bulletVelocity = Vector2(0, -8000.0f);
 
-        Bullet* bullet = new Bullet(bulletPosition, bulletVelocity);
+        Bullet* bullet = new Bullet(bulletPosition, bulletVelocity, 1);
         SPAWN.SpawnObject(bullet);
 
         std::cout << "Bullet fired!" << std::endl;
