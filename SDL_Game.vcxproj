@@ -36,7 +36,6 @@
     <ClInclude Include="source\Enemies\Enemy.h" />
     <ClInclude Include="source\Enemies\Exploding.h" />
     <ClInclude Include="source\Enemies\Shooting.h" />
-    <ClInclude Include="source\FpsCounterUI.h" />
     <ClInclude Include="source\Game.h" />
     <ClInclude Include="source\GameplayTanks.h" />
     <ClInclude Include="source\ImageObject.h" />
