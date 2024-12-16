@@ -32,7 +32,7 @@ public:
 
 		return intersectionX && intersectionY;
 
-		//
+		
 	}
 
 };

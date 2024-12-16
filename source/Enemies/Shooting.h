@@ -1,6 +1,8 @@
 #pragma once
 #include "../Enemies/Enemy.h"
 #include "../RenderManager.h"
+#include "../Players/Player.h"
+#include "../Bullet.h"
 
 class Shooting : public Enemy {
 
@@ -9,23 +11,18 @@ public:
 		: Enemy("resources/PS_Enemy.png", pos, Vector2(1500.f, 1500.f)) {
 	}
 
-	void Update() override {
-		Movement();
-		Enemy::Update();
-	}
+	void Update() override;
 
-	void Movement() override {
-		Enemy::Movement();
-	}
+	void Movement() override;
 
-	void OnCollisionEnter(Object* other) override {
-		if (Bullet* to = reinterpret_cast<Bullet*>(other)) {
-			Destroy();
-			other->Destroy();
-		}
-	}
+	void OnCollisionEnter(Object* other) override;
 
-	void Render() override {
-		Enemy::Render();
-	}
+	void Render() override;
+
+	void Shoot();
+
+	void CleanUp();
+
+private: 
+	std::vector<Bullet*> bullets;
 };
