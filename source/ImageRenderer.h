@@ -8,7 +8,7 @@ public:
 	ImageRenderer(Transform* transform, std::string resourcePath, Vector2 sourceOffset, Vector2 sourceSize)
 		: Renderer(transform, resourcePath) 
 	{
-		RM->LoadTexture(resourcePath);
+		RM->GetTexture(resourcePath);
 
 		sourceRect = SDL_Rect
 		{
@@ -28,15 +28,19 @@ public:
 	}
 	virtual void Update() override
 	{
-		destRect.x = transform->position.x;
-		destRect.y = transform->position.y;
+		Vector2 offset = (Vector2(-transform->size.x, -transform->size.y) / 2.0f) * transform->scale;
 
-		destRect.w = sourceRect.w * transform->scale.x;
-		destRect.h = sourceRect.h * transform->scale.y;
+		destRect.x = transform->position.x + offset.x;
+		destRect.y = transform->position.y + offset.y;
+
+		destRect.w = transform->size.x * transform->scale.x;
+		destRect.h = transform->size.y * transform->scale.y;
 	}
 
-	virtual void Render()
+	virtual void Render() override
 	{
-		SDL_RenderCopy(RM->GetRenderer(), RM->GetTexture(targetPath), &sourceRect, &destRect);
+		//SDL_RenderCopy(RM->GetRenderer(), RM->GetTexture(targetPath), &sourceRect, &destRect);
+
+		SDL_RenderCopyEx(RM->GetRenderer(), RM->GetTexture(targetPath), &sourceRect, &destRect, transform->rotation, NULL, SDL_FLIP_NONE);
 	}
 };

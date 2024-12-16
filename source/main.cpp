@@ -10,6 +10,7 @@
 int main(int argc, char* args[]) {
 
 	Game game;
+	srand(time(NULL));
 	
 	try {
 		game.Init();
@@ -25,7 +26,7 @@ int main(int argc, char* args[]) {
 	while (playing)
 	{
 		TIME.Update();
-		std::cout << TIME.GetDeltaTime() << std::endl;
+		//std::cout << TIME.GetDeltaTime() << std::endl;
 		if (TIME.ShouldUpdateGame())
 		{
 			playing = !Input.Listen();

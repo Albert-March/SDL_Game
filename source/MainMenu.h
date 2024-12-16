@@ -19,4 +19,9 @@ public:
 	{
 
 	}
+
+	void Render() override
+	{
+
+	}
 };
