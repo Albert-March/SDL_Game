@@ -23,7 +23,7 @@ void Game::Init()
 
 	assert(SM.AddScene("SpaceInvaders", new GameplaySpaceInvaders()));
 	assert(SM.AddScene("Tanks", new GameplayTanks()));
-	assert(SM.AddScene("Splat", new GameplaySwatter()));
+	assert(SM.AddScene("Swatter", new GameplaySwatter()));
 
 	assert(SM.InitFirstScene("Main Menu"));
 }

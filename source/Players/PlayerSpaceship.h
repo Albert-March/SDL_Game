@@ -42,7 +42,7 @@ public:
     }
 
     float lastShotTime = 0.0f;
-    const float shootCooldown = 0.4f;
+    const float shootCooldown = 1.0f;
 
     void Shooting() {
         float currentTime = TIME.GetElapsedTime();

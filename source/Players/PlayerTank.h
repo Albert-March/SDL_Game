@@ -109,11 +109,13 @@ public:
     void Shooting() {
         float currentTime = TIME.GetElapsedTime();
 
-        if (Input.GetEvent(SDLK_SPACE, DOWN)) {
-            FireBullet();
-            lastShotTime = currentTime;
+        if (Input.GetLeftClick()) {
+            if (currentTime - lastShotTime >= shootCooldown) {
+                FireBullet();
+                lastShotTime = currentTime;
+            }
         }
-        if (Input.GetEvent(SDLK_SPACE, HOLD) && currentTime - lastShotTime >= shootCooldown) {
+        if (Input.GetLeftClick() && currentTime - lastShotTime >= shootCooldown) {
             FireBullet();
             lastShotTime = currentTime;
         }

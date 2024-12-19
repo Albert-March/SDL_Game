@@ -44,7 +44,7 @@ public:
 		float currentTime = TIME.GetElapsedTime();
 
 		if (currentTime - lastSpawnTime >= spawnCooldown) {
-			enemyType = 4; // = rand() % 2 + 1;
+			enemyType = rand() % 4 + 1;
 			SpawnEnemy();
 			lastSpawnTime = currentTime;
 		}

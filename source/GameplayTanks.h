@@ -44,7 +44,7 @@ public:
 		float currentTime = TIME.GetElapsedTime();
 
 		if (currentTime - lastSpawnTime >= spawnCooldown) {
-			enemyType = 4; // = rand() % 2 + 1;
+			enemyType = rand() % 4 + 1;
 			SpawnEnemy();
 			lastSpawnTime = currentTime;
 		}
@@ -78,7 +78,7 @@ private:
 			SPAWN.SpawnObject(new Seeker(Vector2(50, -20), activePlayer));
 			break;
 		case 3:
-			//SPAWN.SpawnObject(new Shooting(Vector2(50, 40), activePlayer));
+			SPAWN.SpawnObject(new Shooting(Vector2(50, 40), activePlayer));
 			break;
 		case 4:
 			SPAWN.SpawnObject(new Aiming(Vector2(50, 40), activePlayer));
