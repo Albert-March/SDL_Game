@@ -23,11 +23,11 @@ public:
         SPAWN.SpawnObject(background);
 
         logo = new ImageObject("resources/MenuBackground.jpg", Vector2(0.f, 0.f), Vector2(500.f, 500.f));
-        logo->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2, RM->WINDOW_HEIGHT / 2 - 100);
+        logo->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2, RM->WINDOW_HEIGHT - 100);
         logo->GetTransform()->scale = Vector2(1.5f, 1.5f);
-        //SPAWN.SpawnObject(logo);
+        SPAWN.SpawnObject(logo);
 
-        loadingText = new TextObject("Cargando...");
+        loadingText = new TextObject("Loading...");
         loadingText->SetColor(SDL_Color{ 255, 255, 255, 255 });
         loadingText->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2, RM->WINDOW_HEIGHT - 50);
         loadingText->GetTransform()->scale = Vector2(1.0f, 1.0f);

@@ -109,11 +109,12 @@ public:
 
         SortScores(scoresByMode[gameMode]);
 
-        if (newEntry.score > scoresByMode[gameMode][10].score) {
+        if (scoresByMode[gameMode].size() > 10 && newEntry.score > scoresByMode[gameMode][10].score) {
             std::cout << "U are in the list";
             inTheList = true;
         }
-        if (newEntry.score == scoresByMode[gameMode][0].score) {
+
+        if (!scoresByMode[gameMode].empty() && newEntry.score == scoresByMode[gameMode][0].score) {
             std::cout << "NEW RECORD!!";
             newRecord = true;
         }

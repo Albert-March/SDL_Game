@@ -34,60 +34,55 @@ public:
 
         textRanking = new TextObject("Ranking");
         textRanking->GetTransform()->scale = Vector2(2.f, 2.f);
-        float halftext = textRanking->GetSourceRect().w * textRanking->GetTransform()->scale.x * 0.5f;
-        textRanking->GetTransform()->position = Vector2((RM->WINDOW_WIDTH / 2) - halftext, 130);
+        textRanking->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2, 150);
         SPAWN.SpawnObject(textRanking);
 
         textSpaceInvaders = new TextObject("Space Invaders");
         textSpaceInvaders->SetColor(normalColor);
-        textSpaceInvaders->GetTransform()->scale = Vector2(1.f, 1.f);
-        float halfSpaceInvaders = textSpaceInvaders->GetSourceRect().w * textSpaceInvaders->GetTransform()->scale.x * 0.5f;
-        textSpaceInvaders->GetTransform()->position = Vector2((RM->WINDOW_WIDTH / 2) - halfSpaceInvaders - 400, 150);
+        textSpaceInvaders->GetTransform()->scale = Vector2(1.5f, 1.5f);
+        textSpaceInvaders->GetTransform()->position = Vector2((RM->WINDOW_WIDTH / 2) - 400, 200);
         SPAWN.SpawnObject(textSpaceInvaders);
 
         std::string scoreTextSpaceInvaders = GetScoresAsString(0);
         textSpaceInvaders = new TextObject(scoreTextSpaceInvaders);
         textSpaceInvaders->SetColor(normalColor);
         textSpaceInvaders->GetTransform()->scale = Vector2(1.f, 1.f);
-        textSpaceInvaders->GetTransform()->position = Vector2((RM->WINDOW_WIDTH / 2) - halfSpaceInvaders - 400, 200);
+        textSpaceInvaders->GetTransform()->position = Vector2((RM->WINDOW_WIDTH / 2) - 400, 250);
         SPAWN.SpawnObject(textSpaceInvaders);
 
 
         textTank = new TextObject("Tank");
         textTank->SetColor(normalColor);
-        textTank->GetTransform()->scale = Vector2(1.f, 1.f);
-        float halfTank = textTank->GetSourceRect().w * textTank->GetTransform()->scale.x * 0.5f;
-        textTank->GetTransform()->position = Vector2((RM->WINDOW_WIDTH / 2) - halfTank, 150);
+        textTank->GetTransform()->scale = Vector2(1.5f, 1.5f);
+        textTank->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2, 200);
         SPAWN.SpawnObject(textTank);
 
         std::string scoreTextTank = GetScoresAsString(1);
         textTank = new TextObject(scoreTextTank);
         textTank->SetColor(normalColor);
         textTank->GetTransform()->scale = Vector2(1.f, 1.f);
-        textTank->GetTransform()->position = Vector2((RM->WINDOW_WIDTH / 2) - halfTank, 200);
+        textTank->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2, 250);
         SPAWN.SpawnObject(textTank); 
         
         
         textSwatter = new TextObject("Swatter");
         textSwatter->SetColor(normalColor);
-        textSwatter->GetTransform()->scale = Vector2(1.f, 1.f);
-        float halfSwatter = textSwatter->GetSourceRect().w * textSwatter->GetTransform()->scale.x * 0.5f;
-        textSwatter->GetTransform()->position = Vector2((RM->WINDOW_WIDTH / 2) - halfSwatter +400, 150);
+        textSwatter->GetTransform()->scale = Vector2(1.5f, 1.5f);
+        textSwatter->GetTransform()->position = Vector2((RM->WINDOW_WIDTH / 2) +400, 200);
         SPAWN.SpawnObject(textSwatter);
 
         std::string scoreTextSwatter = GetScoresAsString(2);
         textSwatter = new TextObject(scoreTextSwatter);
         textSwatter->SetColor(normalColor);
         textSwatter->GetTransform()->scale = Vector2(1.f, 1.f);
-        textSwatter->GetTransform()->position = Vector2((RM->WINDOW_WIDTH / 2) - halfSwatter + 400, 200);
+        textSwatter->GetTransform()->position = Vector2((RM->WINDOW_WIDTH / 2) + 400, 250);
         SPAWN.SpawnObject(textSwatter);
 
 
         buttonBack = new TextObject("Back");
         buttonBack->SetColor(normalColor);
         buttonBack->GetTransform()->scale = Vector2(1.f, 1.f);
-        float halfButtonBack = buttonBack->GetSourceRect().w * buttonBack->GetTransform()->scale.x * 0.5f;
-        buttonBack->GetTransform()->position = Vector2((RM->WINDOW_WIDTH / 2) - halfButtonBack, RM->WINDOW_HEIGHT - 100);
+        buttonBack->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2, RM->WINDOW_HEIGHT - 100);
         SPAWN.SpawnObject(buttonBack);
     }
 

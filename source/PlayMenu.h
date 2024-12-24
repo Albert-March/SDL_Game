@@ -34,29 +34,25 @@ public:
         buttonTanks = new TextObject("Space Invaders Game");
         buttonTanks->SetColor(selectedColor);
         buttonTanks->GetTransform()->scale = Vector2(1.f, 1.f);
-        float halfButtonTanks = buttonTanks->GetSourceRect().w * buttonTanks->GetTransform()->scale.x * 0.5f;
-        buttonTanks->GetTransform()->position = Vector2((RM->WINDOW_WIDTH / 2) - halfButtonTanks, 200);
+        buttonTanks->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2, 200);
         SPAWN.SpawnObject(buttonTanks);
 
         buttonSwatter = new TextObject("Tanks Game");
         buttonSwatter->SetColor(normalColor);
         buttonSwatter->GetTransform()->scale = Vector2(1.f, 1.f);
-        float halfButtonSwatter = buttonSwatter->GetSourceRect().w * buttonSwatter->GetTransform()->scale.x * 0.5f;
-        buttonSwatter->GetTransform()->position = Vector2((RM->WINDOW_WIDTH / 2) - halfButtonSwatter, 300);
+        buttonSwatter->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2, 300);
         SPAWN.SpawnObject(buttonSwatter);
 
         buttonSpaceInvaders = new TextObject("Swatter Game");
         buttonSpaceInvaders->SetColor(normalColor);
         buttonSpaceInvaders->GetTransform()->scale = Vector2(1.f, 1.f);
-        float halfButtonSI = buttonSpaceInvaders->GetSourceRect().w * buttonSpaceInvaders->GetTransform()->scale.x * 0.5f;
-        buttonSpaceInvaders->GetTransform()->position = Vector2((RM->WINDOW_WIDTH / 2) - halfButtonSI, 400);
+        buttonSpaceInvaders->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2, 400);
         SPAWN.SpawnObject(buttonSpaceInvaders);
 
         buttonBack = new TextObject("Back");
         buttonBack->SetColor(normalColor);
         buttonBack->GetTransform()->scale = Vector2(1.f, 1.f);
-        float halfButtonBack = buttonBack->GetSourceRect().w * buttonBack->GetTransform()->scale.x * 0.5f;
-        buttonBack->GetTransform()->position = Vector2((RM->WINDOW_WIDTH / 2) - halfButtonBack, 500);
+        buttonBack->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2, 500);
         SPAWN.SpawnObject(buttonBack);
     }
 

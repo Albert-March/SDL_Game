@@ -25,7 +25,7 @@ void Game::Init()
 	RM->LoadTexture("resources/animation.png");
 	RM->LoadTexture("resources/MenuBackground.jpg");
 
-	RM->LoadTexture("resources/Backgrounds/disabled.png");
+	RM->LoadTexture("resources/selected.png");
 	RM->LoadTexture("resources/Backgrounds/background_1.jpg");
 	RM->LoadTexture("resources/Backgrounds/background_2.jpg");
 	RM->LoadTexture("resources/Backgrounds/background_3.jpg");
@@ -44,7 +44,7 @@ void Game::Init()
 	assert(SM.AddScene("Win", new Win()));
 
 
-	assert(SM.InitFirstScene("Ranking"));
+	assert(SM.InitFirstScene("Main Menu"));
 
 
 	//audio

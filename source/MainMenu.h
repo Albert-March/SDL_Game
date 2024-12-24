@@ -16,6 +16,7 @@ private:
 
     TextObject* AudioOn;
     TextObject* AudioOff;
+    static bool isAudioOn;
 
     bool buttonPlayColliding = false;
     bool buttonSelectSpritesColliding = false;
@@ -40,50 +41,51 @@ public:
         buttonPlay = new TextObject("Play");
         buttonPlay->SetColor(selectedColor);
         buttonPlay->GetTransform()->scale = Vector2(1.0f, 1.0f);
-        float halfButtonPlay = buttonPlay->GetSourceRect().w * buttonPlay->GetTransform()->scale.x * 0.5f;
-        buttonPlay->GetTransform()->position = Vector2((RM->WINDOW_WIDTH / 2) - halfButtonPlay, 200);
+        buttonPlay->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2, 200);
         SPAWN.SpawnObject(buttonPlay);
 
         buttonSelectSprites = new TextObject("Select Sprites");
         buttonSelectSprites->SetColor(normalColor);
         buttonPlay->GetTransform()->scale = Vector2(1.0f, 1.0f);
-        float halfButtonSelectSprites = buttonSelectSprites->GetSourceRect().w * buttonSelectSprites->GetTransform()->scale.x * 0.5f;
-        buttonSelectSprites->GetTransform()->position = Vector2((RM->WINDOW_WIDTH / 2) - halfButtonSelectSprites, 270);
+        buttonSelectSprites->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2, 270);
         SPAWN.SpawnObject(buttonSelectSprites);
 
         buttonCheckRanking = new TextObject("Check Ranking");
         buttonCheckRanking->SetColor(normalColor);
         buttonPlay->GetTransform()->scale = Vector2(1.0f, 1.0f);
-        float halfButtonCheckRanking = buttonCheckRanking->GetSourceRect().w * buttonCheckRanking->GetTransform()->scale.x * 0.5f;
-        buttonCheckRanking->GetTransform()->position = Vector2((RM->WINDOW_WIDTH / 2) - halfButtonCheckRanking, 340);
+        buttonCheckRanking->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2, 340);
         SPAWN.SpawnObject(buttonCheckRanking);
 
         buttonAudio = new TextObject("Audio");
         buttonAudio->SetColor(normalColor);
         buttonPlay->GetTransform()->scale = Vector2(1.0f, 1.0f);
-        float halfButtonAudio = buttonAudio->GetSourceRect().w * buttonAudio->GetTransform()->scale.x * 0.5f;
-        buttonAudio->GetTransform()->position = Vector2((RM->WINDOW_WIDTH / 2) - halfButtonAudio, 410);
+        buttonAudio->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2, 410);
         SPAWN.SpawnObject(buttonAudio);
 
         buttonExit = new TextObject("Exit");
         buttonExit->SetColor(normalColor);
         buttonPlay->GetTransform()->scale = Vector2(1.0f, 1.0f);
-        float halfButtonExit = buttonExit->GetSourceRect().w * buttonExit->GetTransform()->scale.x * 0.5f;
-        buttonExit->GetTransform()->position = Vector2((RM->WINDOW_WIDTH / 2) - halfButtonExit, 520);
+        buttonExit->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2, 520);
         SPAWN.SpawnObject(buttonExit);
 
         //-------------------------------AUDIO-------------------------------//
         AudioOn = new TextObject("On");
-        AudioOn->SetColor(normalColor);
         AudioOn->GetTransform()->scale = Vector2(1.0f, 1.0f);
-        AudioOn->GetTransform()->position = Vector2((RM->WINDOW_WIDTH / 2) - halfButtonAudio, 450);
-        AudioOn->SetColor(selectedColor);
-        SPAWN.SpawnObject(AudioOn);
+        AudioOn->GetTransform()->position = Vector2((RM->WINDOW_WIDTH / 2) -30, 450);
 
         AudioOff = new TextObject("Off");
-        AudioOff->SetColor(normalColor);
         AudioOff->GetTransform()->scale = Vector2(1.0f, 1.0f);
-        AudioOff->GetTransform()->position = Vector2((RM->WINDOW_WIDTH / 2)- halfButtonAudio + 50, 450);
+        AudioOff->GetTransform()->position = Vector2((RM->WINDOW_WIDTH / 2) + 30, 450);
+
+        if (isAudioOn) {
+            AudioOn->SetColor(selectedColor);
+            AudioOff->SetColor(normalColor);
+        }
+        else {
+            AudioOff->SetColor(selectedColor);
+            AudioOn->SetColor(normalColor);
+        }
+        SPAWN.SpawnObject(AudioOn);
         SPAWN.SpawnObject(AudioOff);
     }
 
@@ -196,6 +198,7 @@ public:
                 AudioOff->SetColor(normalColor);
                 //AM.PlayClip("ClickButton", 0);
                 AM.Unmute();
+                isAudioOn = true;
             }
         }
 
@@ -205,6 +208,7 @@ public:
                 AudioOn->SetColor(normalColor);
                 //AM.PlayClip("ClickButton", 0);
                 AM.Mute();
+                isAudioOn = false;
             }
         }
 
@@ -241,3 +245,5 @@ public:
         delete AudioOff;
     }
 };
+
+bool MainMenu::isAudioOn = true;

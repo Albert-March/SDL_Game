@@ -78,7 +78,7 @@ public:
 				continue;
 			}
 
-			SDL_Surface* lineSurface = TTF_RenderText_Solid(
+			SDL_Surface* lineSurface = TTF_RenderText_Blended(
 				font,
 				line.c_str(),
 				color
@@ -96,11 +96,13 @@ public:
 		}
 
 		//Crear superficia
-		SDL_Surface* finalSurface = SDL_CreateRGBSurface(0, maxWidth, totalHeight, 32, 0, 0, 0, 0);
+		SDL_Surface* finalSurface = SDL_CreateRGBSurfaceWithFormat(0, maxWidth, totalHeight, 32, SDL_PIXELFORMAT_RGBA32);
 		if (!finalSurface) {
 			std::cerr << "Error: No se pudo crear la superficie final. SDL_Error: " << SDL_GetError() << std::endl;
 			return;
 		}
+
+		SDL_SetSurfaceBlendMode(finalSurface, SDL_BLENDMODE_BLEND);
 
 		int yOffset = 0;
 		for (SDL_Surface* lineSurface : lineSurfaces) {
@@ -122,6 +124,9 @@ public:
 			0,0,
 			finalSurface->w, finalSurface->h
 		};
+
+		transform->size.x = finalSurface->w;
+		//transform->size.y = finalSurface->h;
 
 		SDL_FreeSurface(finalSurface);
 		text = newText;

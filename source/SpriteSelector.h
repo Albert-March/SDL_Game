@@ -1,5 +1,4 @@
 #pragma once
-#pragma once
 #include "Scene.h"
 #include "TextObject.h"
 #include "InputManager.h"
@@ -25,20 +24,20 @@ private:
     ImageObject* VFX_2;
     ImageObject* VFX_3;
 
-    ImageObject* disabledBackground;
-    Vector2 disabledBackgroundPos = Vector2(650, 260);
+    ImageObject* selectedBackground;
+    static Vector2 selectedBackgroundPos;
 
-    ImageObject* disabledEnemies;
-    Vector2 disabledEnemiesPos = Vector2(650, 410);
+    ImageObject* selectedEnemies;
+    static Vector2 selectedEnemiesPos;
 
-    ImageObject* disabledVFX;
-    Vector2 disabledVFXPos = Vector2(650, 560);
+    ImageObject* selectedVFX;
+    static Vector2 selectedVFXPos;
 
     TextObject* buttonBack;
 
-    static std::string selectedBackground;
-    static std::string selectedEnemy;
-    static std::string selectedVFX;
+    static std::string backgroundSelected;
+    static std::string enemySelected;
+    static std::string VFXSelected;
 
     SDL_Color normalColor = { 255, 255, 255, 255 };
     SDL_Color selectedColor = { 255, 0, 0, 255 };
@@ -67,35 +66,33 @@ public:
 
         TextSelectorSprites = new TextObject("Sprite Selector");
         TextSelectorSprites->GetTransform()->scale = Vector2(2.f, 2.f);
-        float halftext = TextSelectorSprites->GetSourceRect().w * TextSelectorSprites->GetTransform()->scale.x * 0.5f;
-        TextSelectorSprites->GetTransform()->position = Vector2((RM->WINDOW_WIDTH / 2) - halftext, 150);
+        TextSelectorSprites->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2, 150);
         SPAWN.SpawnObject(TextSelectorSprites);
 
 
         backgroundButton = new TextObject("Background");
         backgroundButton->SetColor(normalColor);
         backgroundButton->GetTransform()->scale = Vector2(1.f, 1.f);
-        float halfbackground = backgroundButton->GetSourceRect().w * backgroundButton->GetTransform()->scale.x * 0.5f;
-        backgroundButton->GetTransform()->position = Vector2(350 - halfbackground, 300);
+        backgroundButton->GetTransform()->position = Vector2(200, 300);
         SPAWN.SpawnObject(backgroundButton);
 
-        disabledBackground = new ImageObject("resources/Backgrounds/disabled.png", Vector2(0.f, 0.f), Vector2(1360.f, 768.f));
-        disabledBackground->GetTransform()->position = disabledBackgroundPos;
-        disabledBackground->GetTransform()->scale = Vector2(1.2f, 1.2f);
-        SPAWN.SpawnObject(disabledBackground);
+        selectedBackground = new ImageObject("resources/selected.png", Vector2(0.f, 0.f), Vector2(1360.f, 768.f));
+        selectedBackground->GetTransform()->position = selectedBackgroundPos;
+        selectedBackground->GetTransform()->scale = Vector2(1.2f, 1.2f);
+        SPAWN.SpawnObject(selectedBackground);
 
         background_1 = new ImageObject("resources/Backgrounds/background_1.jpg", Vector2(0.f, 0.f), Vector2(1360.f, 768.f));
-        background_1->GetTransform()->position = Vector2(650, 260);
+        background_1->GetTransform()->position = Vector2(430, 260);
         background_1->GetTransform()->scale = Vector2(1.f, 1.f);
         SPAWN.SpawnObject(background_1);
 
         background_2 = new ImageObject("resources/Backgrounds/background_2.jpg", Vector2(0.f, 0.f), Vector2(1360.f, 768.f));
-        background_2->GetTransform()->position = Vector2(900, 260);
+        background_2->GetTransform()->position = Vector2(680, 260);
         background_2->GetTransform()->scale = Vector2(1.f, 1.f);
         SPAWN.SpawnObject(background_2);
 
         background_3 = new ImageObject("resources/Backgrounds/background_3.jpg", Vector2(0.f, 0.f), Vector2(1360.f, 768.f));
-        background_3->GetTransform()->position = Vector2(1150, 260);
+        background_3->GetTransform()->position = Vector2(930, 260);
         background_3->GetTransform()->scale = Vector2(1.f, 1.f);
         SPAWN.SpawnObject(background_3);
 
@@ -104,27 +101,26 @@ public:
         enemies = new TextObject("Enemies ");
         enemies->SetColor(normalColor);
         enemies->GetTransform()->scale = Vector2(1.f, 1.f);
-        float halfenemies = enemies->GetSourceRect().w * enemies->GetTransform()->scale.x * 0.5f;
-        enemies->GetTransform()->position = Vector2(350 - halfenemies, 450);
+        enemies->GetTransform()->position = Vector2(200, 450);
         SPAWN.SpawnObject(enemies);
 
-        disabledEnemies = new ImageObject("resources/Backgrounds/disabled.png", Vector2(0.f, 0.f), Vector2(1360.f, 768.f));
-        disabledEnemies->GetTransform()->position = disabledEnemiesPos;
-        disabledEnemies->GetTransform()->scale = Vector2(1.2f, 1.2f);
-        SPAWN.SpawnObject(disabledEnemies);
+        selectedEnemies = new ImageObject("resources/selected.png", Vector2(0.f, 0.f), Vector2(1360.f, 768.f));
+        selectedEnemies->GetTransform()->position = selectedEnemiesPos;
+        selectedEnemies->GetTransform()->scale = Vector2(1.2f, 1.2f);
+        SPAWN.SpawnObject(selectedEnemies);
 
         enemies_1 = new ImageObject("resources/MenuBackground.jpg", Vector2(0.f, 0.f), Vector2(1360.f, 768.f));
-        enemies_1->GetTransform()->position = Vector2(650, 410);
+        enemies_1->GetTransform()->position = Vector2(430, 410);
         enemies_1->GetTransform()->scale = Vector2(1.f, 1.f);
         SPAWN.SpawnObject(enemies_1);
 
         enemies_2 = new ImageObject("resources/MenuBackground.jpg", Vector2(0.f, 0.f), Vector2(1360.f, 768.f));
-        enemies_2->GetTransform()->position = Vector2(900, 410);
+        enemies_2->GetTransform()->position = Vector2(680, 410);
         enemies_2->GetTransform()->scale = Vector2(1.f, 1.f);
         SPAWN.SpawnObject(enemies_2);
 
         enemies_3 = new ImageObject("resources/MenuBackground.jpg", Vector2(0.f, 0.f), Vector2(1360.f, 768.f));
-        enemies_3->GetTransform()->position = Vector2(1150, 410);
+        enemies_3->GetTransform()->position = Vector2(930, 410);
         enemies_3->GetTransform()->scale = Vector2(1.f, 1.f);
         SPAWN.SpawnObject(enemies_3);
 
@@ -133,27 +129,26 @@ public:
         VFX = new TextObject("VFX");
         VFX->SetColor(normalColor);
         VFX->GetTransform()->scale = Vector2(1.f, 1.f);
-        float halfVFX = VFX->GetSourceRect().w * VFX->GetTransform()->scale.x * 0.5f;
-        VFX->GetTransform()->position = Vector2(350 - halfVFX, 600);
+        VFX->GetTransform()->position = Vector2(200, 600);
         SPAWN.SpawnObject(VFX);
 
-        disabledVFX = new ImageObject("resources/Backgrounds/disabled.png", Vector2(0.f, 0.f), Vector2(1360.f, 768.f));
-        disabledVFX->GetTransform()->position = disabledVFXPos;
-        disabledVFX->GetTransform()->scale = Vector2(1.2f, 1.2f);
-        SPAWN.SpawnObject(disabledVFX);
+        selectedVFX = new ImageObject("resources/selected.png", Vector2(0.f, 0.f), Vector2(1360.f, 768.f));
+        selectedVFX->GetTransform()->position = selectedVFXPos;
+        selectedVFX->GetTransform()->scale = Vector2(1.2f, 1.2f);
+        SPAWN.SpawnObject(selectedVFX);
 
         VFX_1 = new ImageObject("resources/MenuBackground.jpg", Vector2(0.f, 0.f), Vector2(1360.f, 768.f));
-        VFX_1->GetTransform()->position = Vector2(650, 560);
+        VFX_1->GetTransform()->position = Vector2(430, 560);
         VFX_1->GetTransform()->scale = Vector2(1.f, 1.f);
         SPAWN.SpawnObject(VFX_1);
 
         VFX_2 = new ImageObject("resources/MenuBackground.jpg", Vector2(0.f, 0.f), Vector2(1360.f, 768.f));
-        VFX_2->GetTransform()->position = Vector2(900, 560);
+        VFX_2->GetTransform()->position = Vector2(680, 560);
         VFX_2->GetTransform()->scale = Vector2(1.f, 1.f);
         SPAWN.SpawnObject(VFX_2);
 
         VFX_3 = new ImageObject("resources/MenuBackground.jpg", Vector2(0.f, 0.f), Vector2(1360.f, 768.f));
-        VFX_3->GetTransform()->position = Vector2(1150, 560);
+        VFX_3->GetTransform()->position = Vector2(930, 560);
         VFX_3->GetTransform()->scale = Vector2(1.f, 1.f);
         SPAWN.SpawnObject(VFX_3);
 
@@ -162,8 +157,7 @@ public:
         buttonBack = new TextObject("Back");
         buttonBack->SetColor(normalColor);
         buttonBack->GetTransform()->scale = Vector2(1.f, 1.f);
-        float halfButtonBack = buttonBack->GetSourceRect().w * buttonBack->GetTransform()->scale.x * 0.5f;
-        buttonBack->GetTransform()->position = Vector2((RM->WINDOW_WIDTH / 2) - halfButtonBack, 750);
+        buttonBack->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2, 700);
         SPAWN.SpawnObject(buttonBack);
     }
 
@@ -213,8 +207,8 @@ public:
         //-------------------- BACKGROUND SELECTION -------------------------//
         if (IsMouseOverSprite(background_1, mousePos)) {
             background_1->GetTransform()->scale = Vector2(1.2f, 1.2f);
-            if(disabledBackground->GetTransform()->position == background_1->GetTransform()->position)
-                disabledBackground->GetTransform()->scale = Vector2(1.4f, 1.4f);
+            if(selectedBackground->GetTransform()->position == background_1->GetTransform()->position)
+                selectedBackground->GetTransform()->scale = Vector2(1.4f, 1.4f);
             if (isLeftClick) {
                 pendingToChange = true;
             }
@@ -223,23 +217,24 @@ public:
                 Collidingbackground_1 = true;
             }
             if (!isLeftClick && pendingToChange) {
-                selectedBackground = "background_1.jpg";
+                backgroundSelected = "background_1.jpg";
                 AM.PlayClip("ClickButton", 0);
-                disabledBackground->GetTransform()->position = Vector2(650, 260);
-                disabledBackground->GetTransform()->scale = Vector2(1.2f, 1.2f);
+                selectedBackgroundPos = Vector2(430, 260);
+                selectedBackground->GetTransform()->position = selectedBackgroundPos;
+                selectedBackground->GetTransform()->scale = Vector2(1.2f, 1.2f);
                 pendingToChange = false;
             }
         }
         else {
             background_1->GetTransform()->scale = Vector2(1.0f, 1.0f);
-            disabledBackground->GetTransform()->scale = Vector2(1.2f, 1.2f);
+            selectedBackground->GetTransform()->scale = Vector2(1.2f, 1.2f);
             Collidingbackground_1 = false;
         }
 
         if (IsMouseOverSprite(background_2, mousePos)) {
             background_2->GetTransform()->scale = Vector2(1.2f, 1.2f);
-            if (disabledBackground->GetTransform()->position == background_2->GetTransform()->position)
-                disabledBackground->GetTransform()->scale = Vector2(1.4f, 1.4f);
+            if (selectedBackground->GetTransform()->position == background_2->GetTransform()->position)
+                selectedBackground->GetTransform()->scale = Vector2(1.4f, 1.4f);
             if (isLeftClick) {
                 pendingToChange = true;
             }
@@ -248,10 +243,11 @@ public:
                 Collidingbackground_2 = true;
             }
             if (!isLeftClick && pendingToChange) {
-                selectedBackground = "background_2.jpg";
+                backgroundSelected = "background_2.jpg";
                 AM.PlayClip("ClickButton", 0);
-                disabledBackground->GetTransform()->position = Vector2(900, 260);
-                disabledBackground->GetTransform()->scale = Vector2(1.2f, 1.2f);
+                selectedBackgroundPos = Vector2(680, 260);
+                selectedBackground->GetTransform()->position = selectedBackgroundPos;
+                selectedBackground->GetTransform()->scale = Vector2(1.2f, 1.2f);
                 pendingToChange = false;
             }
         }
@@ -262,8 +258,8 @@ public:
 
         if (IsMouseOverSprite(background_3, mousePos)) {
             background_3->GetTransform()->scale = Vector2(1.2f, 1.2f);
-            if (disabledBackground->GetTransform()->position == background_3->GetTransform()->position)
-                disabledBackground->GetTransform()->scale = Vector2(1.4f, 1.4f);
+            if (selectedBackground->GetTransform()->position == background_3->GetTransform()->position)
+                selectedBackground->GetTransform()->scale = Vector2(1.4f, 1.4f);
             if (isLeftClick) {
                 pendingToChange = true;
             }
@@ -272,10 +268,11 @@ public:
                 Collidingbackground_3 = true;
             }
             if (!isLeftClick && pendingToChange) {
-                selectedBackground = "background_3.jpg";
+                backgroundSelected = "background_3.jpg";
                 AM.PlayClip("ClickButton", 0);
-                disabledBackground->GetTransform()->position = Vector2(1150, 260);
-                disabledBackground->GetTransform()->scale = Vector2(1.2f, 1.2f);
+                selectedBackgroundPos = Vector2(930, 260);
+                selectedBackground->GetTransform()->position = selectedBackgroundPos;
+                selectedBackground->GetTransform()->scale = Vector2(1.2f, 1.2f);
                 pendingToChange = false;
             }
         }
@@ -287,8 +284,8 @@ public:
         //-------------------- ENEMIES SELECTION -----------------------//
         if (IsMouseOverSprite(enemies_1, mousePos)) {
             enemies_1->GetTransform()->scale = Vector2(1.2f, 1.2f);
-            if (disabledEnemies->GetTransform()->position == enemies_1->GetTransform()->position)
-                disabledEnemies->GetTransform()->scale = Vector2(1.4f, 1.4f);
+            if (selectedEnemies->GetTransform()->position == enemies_1->GetTransform()->position)
+                selectedEnemies->GetTransform()->scale = Vector2(1.4f, 1.4f);
             if (isLeftClick) {
                 pendingToChange = true;
             }
@@ -297,23 +294,24 @@ public:
                 Collidingenemies_1 = true;
             }
             if (!isLeftClick && pendingToChange) {
-                selectedEnemy = "enemy_1";
+                enemySelected = "enemy_1";
                 AM.PlayClip("ClickButton", 0);
-                disabledEnemies->GetTransform()->position = Vector2(650, 410);
-                disabledEnemies->GetTransform()->scale = Vector2(1.2f, 1.2f);
+                selectedEnemiesPos = Vector2(430, 410);
+                selectedEnemies->GetTransform()->position = selectedEnemiesPos;
+                selectedEnemies->GetTransform()->scale = Vector2(1.2f, 1.2f);
                 pendingToChange = false;
             }
         }
         else {
             enemies_1->GetTransform()->scale = Vector2(1.0f, 1.0f);
-            disabledEnemies->GetTransform()->scale = Vector2(1.2f, 1.2f);
+            selectedEnemies->GetTransform()->scale = Vector2(1.2f, 1.2f);
             Collidingenemies_1 = false;
         }
 
         if (IsMouseOverSprite(enemies_2, mousePos)) {
             enemies_2->GetTransform()->scale = Vector2(1.2f, 1.2f);
-            if (disabledEnemies->GetTransform()->position == enemies_2->GetTransform()->position)
-                disabledEnemies->GetTransform()->scale = Vector2(1.4f, 1.4f);
+            if (selectedEnemies->GetTransform()->position == enemies_2->GetTransform()->position)
+                selectedEnemies->GetTransform()->scale = Vector2(1.4f, 1.4f);
             if (isLeftClick) {
                 pendingToChange = true;
             }
@@ -322,10 +320,11 @@ public:
                 Collidingenemies_2 = true;
             }
             if (!isLeftClick && pendingToChange) {
-                selectedEnemy = "enemy_2";
+                enemySelected = "enemy_2";
                 AM.PlayClip("ClickButton", 0);
-                disabledEnemies->GetTransform()->position = Vector2(900, 410);
-                disabledEnemies->GetTransform()->scale = Vector2(1.2f, 1.2f);
+                selectedEnemiesPos = Vector2(680, 410);
+                selectedEnemies->GetTransform()->position = selectedEnemiesPos;
+                selectedEnemies->GetTransform()->scale = Vector2(1.2f, 1.2f);
                 pendingToChange = false;
             }
         }
@@ -336,8 +335,8 @@ public:
 
         if (IsMouseOverSprite(enemies_3, mousePos)) {
             enemies_3->GetTransform()->scale = Vector2(1.2f, 1.2f);
-            if (disabledEnemies->GetTransform()->position == enemies_3->GetTransform()->position)
-                disabledEnemies->GetTransform()->scale = Vector2(1.4f, 1.4f);
+            if (selectedEnemies->GetTransform()->position == enemies_3->GetTransform()->position)
+                selectedEnemies->GetTransform()->scale = Vector2(1.4f, 1.4f);
             if (isLeftClick) {
                 pendingToChange = true;
             }
@@ -346,10 +345,11 @@ public:
                 Collidingenemies_3 = true;
             }
             if (!isLeftClick && pendingToChange) {
-                selectedEnemy = "enemy_3";
+                enemySelected = "enemy_3";
                 AM.PlayClip("ClickButton", 0);
-                disabledEnemies->GetTransform()->position = Vector2(1150, 410);
-                disabledEnemies->GetTransform()->scale = Vector2(1.2f, 1.2f);
+                selectedEnemiesPos = Vector2(930, 410);
+                selectedEnemies->GetTransform()->position = selectedEnemiesPos;
+                selectedEnemies->GetTransform()->scale = Vector2(1.2f, 1.2f);
                 pendingToChange = false;
             }
         }
@@ -361,8 +361,8 @@ public:
         //-------------------- VFX -----------------------//
         if (IsMouseOverSprite(VFX_1, mousePos)) {
             VFX_1->GetTransform()->scale = Vector2(1.2f, 1.2f);
-            if (disabledVFX->GetTransform()->position == VFX_1->GetTransform()->position)
-                disabledVFX->GetTransform()->scale = Vector2(1.4f, 1.4f);
+            if (selectedVFX->GetTransform()->position == VFX_1->GetTransform()->position)
+                selectedVFX->GetTransform()->scale = Vector2(1.4f, 1.4f);
             if (isLeftClick) {
                 pendingToChange = true;
             }
@@ -371,23 +371,24 @@ public:
                 CollidingVFX_1 = true;
             }
             if (!isLeftClick && pendingToChange) {
-                selectedVFX = "VFX_1";
+                VFXSelected = "VFX_1";
                 AM.PlayClip("ClickButton", 0);
-                disabledVFX->GetTransform()->position = Vector2(650, 560);
-                disabledVFX->GetTransform()->scale = Vector2(1.2f, 1.2f);
+                selectedVFXPos = Vector2(430, 560);
+                selectedVFX->GetTransform()->position = selectedVFXPos;
+                selectedVFX->GetTransform()->scale = Vector2(1.2f, 1.2f);
                 pendingToChange = false;
             }
         }
         else {
             VFX_1->GetTransform()->scale = Vector2(1.0f, 1.0f);
-            disabledVFX->GetTransform()->scale = Vector2(1.2f, 1.2f);
+            selectedVFX->GetTransform()->scale = Vector2(1.2f, 1.2f);
             CollidingVFX_1 = false;
         }
 
         if (IsMouseOverSprite(VFX_2, mousePos)) {
             VFX_2->GetTransform()->scale = Vector2(1.2f, 1.2f);
-            if (disabledVFX->GetTransform()->position == VFX_2->GetTransform()->position)
-                disabledVFX->GetTransform()->scale = Vector2(1.4f, 1.4f);
+            if (selectedVFX->GetTransform()->position == VFX_2->GetTransform()->position)
+                selectedVFX->GetTransform()->scale = Vector2(1.4f, 1.4f);
             if (isLeftClick) {
                 pendingToChange = true;
             }
@@ -396,10 +397,11 @@ public:
                 CollidingVFX_2 = true;
             }
             if (!isLeftClick && pendingToChange) {
-                selectedVFX = "VFX_2";
+                VFXSelected = "VFX_2";
                 AM.PlayClip("ClickButton", 0);
-                disabledVFX->GetTransform()->position = Vector2(900, 560);
-                disabledVFX->GetTransform()->scale = Vector2(1.2f, 1.2f);
+                selectedVFXPos = Vector2(680, 560);
+                selectedVFX->GetTransform()->position = selectedVFXPos;
+                selectedVFX->GetTransform()->scale = Vector2(1.2f, 1.2f);
                 pendingToChange = false;
             }
         }
@@ -410,8 +412,8 @@ public:
 
         if (IsMouseOverSprite(VFX_3, mousePos)) {
             VFX_3->GetTransform()->scale = Vector2(1.2f, 1.2f);
-            if (disabledVFX->GetTransform()->position == VFX_3->GetTransform()->position)
-                disabledVFX->GetTransform()->scale = Vector2(1.4f, 1.4f);
+            if (selectedVFX->GetTransform()->position == VFX_3->GetTransform()->position)
+                selectedVFX->GetTransform()->scale = Vector2(1.4f, 1.4f);
             if (isLeftClick) {
                 pendingToChange = true;
             }
@@ -420,10 +422,11 @@ public:
                 CollidingVFX_3 = true;
             }
             if (!isLeftClick && pendingToChange) {
-                selectedVFX = "VFX_3";
+                VFXSelected = "VFX_3";
                 AM.PlayClip("ClickButton", 0);
-                disabledVFX->GetTransform()->position = Vector2(1150, 560);
-                disabledVFX->GetTransform()->scale = Vector2(1.2f, 1.2f);
+                selectedVFXPos = Vector2(930, 560);
+                selectedVFX->GetTransform()->position = selectedVFXPos;
+                selectedVFX->GetTransform()->scale = Vector2(1.2f, 1.2f);
                 pendingToChange = false;
             }
         }
@@ -466,11 +469,15 @@ public:
         delete VFX;
     }
 
-    static std::string GetSelectedBackground() { return selectedBackground; }
-    std::string GetSelectedEnemy() const { return selectedEnemy; }
-    std::string GetSelectedVFX() const { return selectedVFX; }
+    static std::string GetSelectedBackground() { return backgroundSelected; }
+    std::string GetSelectedEnemy() const { return enemySelected; }
+    std::string GetSelectedVFX() const { return VFXSelected; }
 
 };
-std::string SpriteSelector::selectedBackground = "background_1.jpg";
-std::string SpriteSelector::selectedEnemy = "enemies_1";
-std::string SpriteSelector::selectedVFX = "VFX_1";
+std::string SpriteSelector::backgroundSelected = "background_1.jpg";
+std::string SpriteSelector::enemySelected = "enemies_1";
+std::string SpriteSelector::VFXSelected = "VFX_1";
+
+Vector2 SpriteSelector::selectedBackgroundPos = Vector2(430, 260);
+Vector2 SpriteSelector::selectedEnemiesPos = Vector2(430, 410);
+Vector2 SpriteSelector::selectedVFXPos = Vector2(430, 560);
