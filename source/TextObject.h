@@ -19,4 +19,10 @@ public:
 	void SetColor(SDL_Color color) {
 		tr->SetColor(color);
 	}
+	SDL_Rect GetSourceRect() const {
+		return tr->GetSourceRect();
+	}
+	SDL_Rect GetDestRect() const {
+		return tr->GetDestRect();
+	}
 };

@@ -3,6 +3,7 @@
 #include <SDL.h>
 #include <queue>
 #include <unordered_map>
+#include "SceneManager.h"
 
 #define Input InputManager::Instance()
 
@@ -44,35 +45,47 @@ public:
                 it->second = RELEASED;
         }
 
-
-
-
         SDL_GetMouseState(&mouseX, &mouseY);
 
         SDL_Event event;
 
         while (SDL_PollEvent(&event))
         {
-            if (event.type == SDL_QUIT)
+            switch (event.type) {
+            case SDL_QUIT:
                 return true;
-            else if (event.type == SDL_MOUSEBUTTONDOWN)
-            {
+
+            case SDL_MOUSEBUTTONDOWN:
                 if (event.button.button == SDL_BUTTON_LEFT)
                     leftClick = true;
-            }
-            else if (event.type == SDL_MOUSEBUTTONUP)
-            {
+                break;
+
+            case SDL_MOUSEBUTTONUP:
                 if (event.button.button == SDL_BUTTON_LEFT)
                     leftClick = false;
-            }
-            else if (event.type == SDL_KEYDOWN)
-            {
-                if(keyReference[event.key.keysym.sym] != HOLD)
+                break;
+
+            case SDL_KEYDOWN:
+                if (keyReference[event.key.keysym.sym] != HOLD)
                     keyReference[event.key.keysym.sym] = DOWN;
-            }
-            else if (event.type == SDL_KEYUP)
-            {
+
+                if (SM.GetCurrentScene()) {
+                    SM.GetCurrentScene()->HandleTextInput(event);
+                }
+                break;
+
+            case SDL_KEYUP:
                 keyReference[event.key.keysym.sym] = UP;
+                break;
+
+            case SDL_TEXTINPUT:
+                if (SM.GetCurrentScene()) {
+                    SM.GetCurrentScene()->HandleTextInput(event);
+                }
+                break;
+
+            default:
+                break;
             }
         }
         return false;
@@ -85,6 +98,4 @@ public:
     {
         return keyReference[input] == inputValue;
     }
-
-
 };

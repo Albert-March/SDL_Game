@@ -1,5 +1,3 @@
-//#include <SDL.h>
-//#include <SDL_image.h>
 #include "Game.h"
 #include <exception>
 #include <iostream>

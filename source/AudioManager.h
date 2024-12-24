@@ -13,6 +13,8 @@ private:
 	std::unordered_map<std::string, Mix_Music*> _songs;
 
 	bool _muted = false;
+	int _previousMusicVolume = MIX_MAX_VOLUME;
+	int _previousSFXVolume = MIX_MAX_VOLUME;
 
 	AudioManager()
 	{
@@ -77,12 +79,22 @@ public:
 
 	inline void Mute()
 	{
-		_muted = true;
+		if (!_muted) {
+			_muted = true;
+			_previousMusicVolume = Mix_VolumeMusic(-1);
+			_previousSFXVolume = Mix_Volume(-1, -1);
+			Mix_VolumeMusic(0);				//Mutea Musica
+			Mix_Volume(-1, 0);				//Mutea efectos de sonido
+		}
 	}
 
 	inline void Unmute()
 	{
-		_muted = false;
+		if (_muted) {
+			_muted = false;
+			Mix_VolumeMusic(_previousMusicVolume);
+			Mix_Volume(-1, _previousSFXVolume);
+		}
 	}
 
 	inline bool GetMuted() { return _muted; }
@@ -92,4 +104,27 @@ public:
 		Mix_HaltMusic();
 		Mix_HaltChannel(-1);
 	}
+
+	inline void SetMusicVolume(int volume) {
+		if (volume < 0) {
+			volume = 0;
+		}
+		else if (volume > MIX_MAX_VOLUME) {
+			volume = MIX_MAX_VOLUME;
+		}
+
+		Mix_VolumeMusic(volume);
+	}
+
+	inline void SetSFXVolume(int volume) {
+		if (volume < 0) {
+			volume = 0;
+		}
+		else if (volume > MIX_MAX_VOLUME) {
+			volume = MIX_MAX_VOLUME;
+		}
+
+		Mix_Volume(-1, volume); //-1 Tots els canals de VFX
+	}
+
 };

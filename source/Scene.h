@@ -57,4 +57,6 @@ public:
 			o->Render();
 		}
 	}
+
+	virtual void HandleTextInput(SDL_Event& event) {}
 };

@@ -35,10 +35,21 @@ public:
 	GameplaySwatter() = default;
 
 	void OnEnter() override {
+		std::string background = SpriteSelector::GetSelectedBackground();
+		ImageObject* bg = new ImageObject("resources/Backgrounds/" + background, Vector2(0.f, 0.f), Vector2(1360.f, 768.f));
+		bg->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2, RM->WINDOW_HEIGHT / 2);
+		bg->GetTransform()->scale = Vector2(13.6f, 7.68f);
+		SPAWN.SpawnObject(bg);
+
 		activePlayer = new PlayerSwatter(Vector2(RM->WINDOW_WIDTH / 2, RM->WINDOW_HEIGHT - 100));
 		SPAWN.SpawnObject(activePlayer);
 
 		InitUI();
+	}
+
+	void TransferScoreAndModeToWin() {
+		Win* winScene = dynamic_cast<Win*>(SM.GetScene("Win"));
+		winScene->SetScoreAndMode(score, 2);
 	}
 
 	void Update() override {
@@ -60,6 +71,11 @@ public:
 			SM.SetNextScene("SpaceInvaders");
 		if (Input.GetEvent(SDLK_2, DOWN))
 			SM.SetNextScene("Tanks");
+		//Temporal
+		if (Input.GetEvent(SDLK_0, DOWN)) {
+			TransferScoreAndModeToWin();
+			SM.SetNextScene("Win");
+		}
 
 		Scene::Update();
 	}

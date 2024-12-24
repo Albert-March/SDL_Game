@@ -5,7 +5,12 @@
 #include "GameplayTanks.h"
 #include "GameplaySwatter.h"
 #include "SceneManager.h"
+#include "SplashScreen.h"
 #include "MainMenu.h"
+#include "PlayMenu.h"
+#include "SpriteSelector.h"
+#include "Win.h"
+#include "Ranking.h"
 
 void Game::Init()
 {
@@ -18,14 +23,40 @@ void Game::Init()
 	RM->LoadTexture("resources/Swatter.png");
 	RM->LoadTexture("resources/Cannon.png");
 	RM->LoadTexture("resources/animation.png");
+	RM->LoadTexture("resources/MenuBackground.jpg");
+
+	RM->LoadTexture("resources/Backgrounds/disabled.png");
+	RM->LoadTexture("resources/Backgrounds/background_1.jpg");
+	RM->LoadTexture("resources/Backgrounds/background_2.jpg");
+	RM->LoadTexture("resources/Backgrounds/background_3.jpg");
+
+	assert(SM.AddScene("Splash Screen", new SplashScreen()));
 
 	assert(SM.AddScene("Main Menu", new MainMenu()));
+	assert(SM.AddScene("PlayMenu", new PlayMenu()));
+	assert(SM.AddScene("SpriteSelector", new SpriteSelector()));
+	assert(SM.AddScene("Ranking", new Ranking()));
 
 	assert(SM.AddScene("SpaceInvaders", new GameplaySpaceInvaders()));
 	assert(SM.AddScene("Tanks", new GameplayTanks()));
 	assert(SM.AddScene("Swatter", new GameplaySwatter()));
 
-	assert(SM.InitFirstScene("Main Menu"));
+	assert(SM.AddScene("Win", new Win()));
+
+
+	assert(SM.InitFirstScene("Ranking"));
+
+
+	//audio
+	AM.LoadClip("SelectButton");
+	AM.LoadClip("ClickButton");
+	AM.LoadClip("StartGame");
+
+	AM.LoadSong("Music");
+
+	AM.PlaySong("Music");
+	AM.SetMusicVolume(20);
+
 }
 
 void Game::Update()
