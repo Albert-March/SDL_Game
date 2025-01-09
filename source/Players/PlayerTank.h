@@ -9,7 +9,7 @@
 class Cannon : public ImageObject {
 public:
     Cannon(Vector2 pos)
-        : ImageObject("resources/Cannon.png", Vector2(0.f, 0.f), Vector2(500.f, 500.f)) {
+        : ImageObject("resources/Cannon.png", Vector2(0.f, 0.f), Vector2(130.f, 485.f)) {
         transform->position = pos;
         transform->rotation = 0.0f;
         transform->scale = Vector2(1.f, 1.f);
@@ -46,7 +46,7 @@ private:
 public:
 
     PlayerTank(Vector2 pos)
-        : Player("resources/Tank.png", pos, Vector2(500.f, 500.f)) {
+        : Player("resources/Tank.png", pos, Vector2(349.f, 390.f)) {
         SPAWN.SpawnObject(cannon);
     }
 

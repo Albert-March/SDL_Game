@@ -21,6 +21,8 @@ private:
     TextObject* AcceptButton;
     TextObject* AlertText;
 
+    bool alertText = false;
+
     std::string playerName = "";
     bool isTyping = false;
 
@@ -45,20 +47,20 @@ public:
 
         WinText = new TextObject("YOU WIN!");
         WinText->SetColor(selectedColor);
-        WinText->GetTransform()->scale = Vector2(2.f, 2.f);
-        WinText->GetTransform()->position = Vector2((RM->WINDOW_WIDTH / 2) - 200, 100);
+        WinText->GetTransform()->scale = Vector2(3.f, 3.f);
+        WinText->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2, 300);
         SPAWN.SpawnObject(WinText);
 
         NameInputText = new TextObject("Enter your name: ");
         NameInputText->SetColor(normalColor);
         NameInputText->GetTransform()->scale = Vector2(1.5f, 1.5f);
-        NameInputText->GetTransform()->position = Vector2((RM->WINDOW_WIDTH / 2) - 200, 200);
+        NameInputText->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2, 350);
         SPAWN.SpawnObject(NameInputText);
 
         AcceptButton = new TextObject("Accept");
         AcceptButton->SetColor(normalColor);
         AcceptButton->GetTransform()->scale = Vector2(2.f, 2.f);
-        AcceptButton->GetTransform()->position = Vector2((RM->WINDOW_WIDTH / 2) - 50, 300);
+        AcceptButton->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2, 600);
         SPAWN.SpawnObject(AcceptButton);
 
         newRecord = false;
@@ -167,6 +169,11 @@ public:
                 std::cout << "BACKSPACE" << std::endl;
             }
         }
+        if (alertText == true) 
+        {
+            AlertText->Destroy();
+            alertText = false;
+        }
     }
 
     void Update() override {
@@ -212,9 +219,10 @@ public:
                     AlertText = new TextObject(mesage);
                     AlertText->SetColor(selectedColor);
                     AlertText->GetTransform()->scale = Vector2(1.f, 1.f);
-                    AlertText->GetTransform()->position = Vector2((RM->WINDOW_WIDTH / 2) - 200, 600);
+                    AlertText->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2, 400);
                     SPAWN.SpawnObject(AlertText);
                     pendingToChange = false;
+                    alertText = true;
                 }
             }
         }

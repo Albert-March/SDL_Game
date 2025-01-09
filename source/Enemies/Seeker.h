@@ -1,6 +1,7 @@
 #pragma once
 #include "../Enemies/Enemy.h"
 #include "../RenderManager.h"
+#include "../SpriteSelector.h"
 #include <cmath>
 
 class Seeker : public Enemy {
@@ -11,7 +12,7 @@ private:
 
 public:
 	Seeker(Vector2 pos, Player* player)
-		: Enemy("resources/PS_Enemy.png", pos, Vector2(1500.f, 1500.f)) {
+		: Enemy("resources/Enemies/" + SpriteSelector::GetSelectedEnemy(), pos, Vector2(1500.f, 1500.f)) {
         playerReference = player;
 	}
 

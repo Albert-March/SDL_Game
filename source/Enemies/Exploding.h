@@ -1,12 +1,13 @@
 #pragma once
 #include "../Enemies/Enemy.h"
 #include "../RenderManager.h"
+#include "../SpriteSelector.h"
 
 class Exploding : public Enemy {
 
 public:
 	Exploding(Vector2 pos, Player* player)
-		: Enemy("resources/PS_Enemy.png", pos, Vector2(1500.f, 1500.f)) {
+		: Enemy("resources/Enemies/" + SpriteSelector::GetSelectedEnemy(), pos, Vector2(1500.f, 1500.f)) {
 	}
 
 	void Update() override {

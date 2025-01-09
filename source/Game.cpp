@@ -17,7 +17,6 @@ void Game::Init()
 	RM->Init();
 
 	RM->LoadTexture("resources/bullet.png");
-	RM->LoadTexture("resources/PS_Enemy.png");
 	RM->LoadTexture("resources/Tank.png");
 	RM->LoadTexture("resources/Spaceship.png");
 	RM->LoadTexture("resources/Swatter.png");
@@ -29,6 +28,10 @@ void Game::Init()
 	RM->LoadTexture("resources/Backgrounds/background_1.jpg");
 	RM->LoadTexture("resources/Backgrounds/background_2.jpg");
 	RM->LoadTexture("resources/Backgrounds/background_3.jpg");
+
+	RM->LoadTexture("resources/Enemies/enemy_1.png");
+	RM->LoadTexture("resources/Enemies/enemy_2.png");
+	RM->LoadTexture("resources/Enemies/enemy_3.png");
 
 	assert(SM.AddScene("Splash Screen", new SplashScreen()));
 

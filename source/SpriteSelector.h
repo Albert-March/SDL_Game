@@ -3,6 +3,7 @@
 #include "TextObject.h"
 #include "InputManager.h"
 #include "SceneManager.h"
+#include "AudioManager.h"
 
 class SpriteSelector : public Scene
 {
@@ -109,17 +110,17 @@ public:
         selectedEnemies->GetTransform()->scale = Vector2(1.2f, 1.2f);
         SPAWN.SpawnObject(selectedEnemies);
 
-        enemies_1 = new ImageObject("resources/MenuBackground.jpg", Vector2(0.f, 0.f), Vector2(1360.f, 768.f));
+        enemies_1 = new ImageObject("resources/Enemies/enemy_1.png", Vector2(0.f, 0.f), Vector2(1360.f, 768.f));
         enemies_1->GetTransform()->position = Vector2(430, 410);
         enemies_1->GetTransform()->scale = Vector2(1.f, 1.f);
         SPAWN.SpawnObject(enemies_1);
 
-        enemies_2 = new ImageObject("resources/MenuBackground.jpg", Vector2(0.f, 0.f), Vector2(1360.f, 768.f));
+        enemies_2 = new ImageObject("resources/Enemies/enemy_2.png", Vector2(0.f, 0.f), Vector2(1360.f, 768.f));
         enemies_2->GetTransform()->position = Vector2(680, 410);
         enemies_2->GetTransform()->scale = Vector2(1.f, 1.f);
         SPAWN.SpawnObject(enemies_2);
 
-        enemies_3 = new ImageObject("resources/MenuBackground.jpg", Vector2(0.f, 0.f), Vector2(1360.f, 768.f));
+        enemies_3 = new ImageObject("resources/Enemies/enemy_3.png", Vector2(0.f, 0.f), Vector2(1360.f, 768.f));
         enemies_3->GetTransform()->position = Vector2(930, 410);
         enemies_3->GetTransform()->scale = Vector2(1.f, 1.f);
         SPAWN.SpawnObject(enemies_3);
@@ -294,7 +295,7 @@ public:
                 Collidingenemies_1 = true;
             }
             if (!isLeftClick && pendingToChange) {
-                enemySelected = "enemy_1";
+                enemySelected = "enemy_1.png";
                 AM.PlayClip("ClickButton", 0);
                 selectedEnemiesPos = Vector2(430, 410);
                 selectedEnemies->GetTransform()->position = selectedEnemiesPos;
@@ -320,7 +321,7 @@ public:
                 Collidingenemies_2 = true;
             }
             if (!isLeftClick && pendingToChange) {
-                enemySelected = "enemy_2";
+                enemySelected = "enemy_2.png";
                 AM.PlayClip("ClickButton", 0);
                 selectedEnemiesPos = Vector2(680, 410);
                 selectedEnemies->GetTransform()->position = selectedEnemiesPos;
@@ -345,7 +346,7 @@ public:
                 Collidingenemies_3 = true;
             }
             if (!isLeftClick && pendingToChange) {
-                enemySelected = "enemy_3";
+                enemySelected = "enemy_3.png";
                 AM.PlayClip("ClickButton", 0);
                 selectedEnemiesPos = Vector2(930, 410);
                 selectedEnemies->GetTransform()->position = selectedEnemiesPos;
@@ -470,12 +471,12 @@ public:
     }
 
     static std::string GetSelectedBackground() { return backgroundSelected; }
-    std::string GetSelectedEnemy() const { return enemySelected; }
-    std::string GetSelectedVFX() const { return VFXSelected; }
+    static std::string GetSelectedEnemy() { return enemySelected; }
+    static std::string GetSelectedVFX(){ return VFXSelected; }
 
 };
 std::string SpriteSelector::backgroundSelected = "background_1.jpg";
-std::string SpriteSelector::enemySelected = "enemies_1";
+std::string SpriteSelector::enemySelected = "enemy_1.png";
 std::string SpriteSelector::VFXSelected = "VFX_1";
 
 Vector2 SpriteSelector::selectedBackgroundPos = Vector2(430, 260);

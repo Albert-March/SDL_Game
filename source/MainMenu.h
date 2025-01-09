@@ -40,42 +40,42 @@ public:
 
         buttonPlay = new TextObject("Play");
         buttonPlay->SetColor(selectedColor);
-        buttonPlay->GetTransform()->scale = Vector2(1.0f, 1.0f);
+        buttonPlay->GetTransform()->scale = Vector2(1.5f, 1.5f);
         buttonPlay->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2, 200);
         SPAWN.SpawnObject(buttonPlay);
 
         buttonSelectSprites = new TextObject("Select Sprites");
         buttonSelectSprites->SetColor(normalColor);
-        buttonPlay->GetTransform()->scale = Vector2(1.0f, 1.0f);
-        buttonSelectSprites->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2, 270);
+        buttonSelectSprites->GetTransform()->scale = Vector2(1.5f, 1.5f);
+        buttonSelectSprites->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2, 300);
         SPAWN.SpawnObject(buttonSelectSprites);
 
         buttonCheckRanking = new TextObject("Check Ranking");
         buttonCheckRanking->SetColor(normalColor);
-        buttonPlay->GetTransform()->scale = Vector2(1.0f, 1.0f);
-        buttonCheckRanking->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2, 340);
+        buttonCheckRanking->GetTransform()->scale = Vector2(1.5f, 1.5f);
+        buttonCheckRanking->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2, 400);
         SPAWN.SpawnObject(buttonCheckRanking);
 
         buttonAudio = new TextObject("Audio");
         buttonAudio->SetColor(normalColor);
-        buttonPlay->GetTransform()->scale = Vector2(1.0f, 1.0f);
-        buttonAudio->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2, 410);
+        buttonAudio->GetTransform()->scale = Vector2(1.5f, 1.5f);
+        buttonAudio->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2, 500);
         SPAWN.SpawnObject(buttonAudio);
 
         buttonExit = new TextObject("Exit");
         buttonExit->SetColor(normalColor);
-        buttonPlay->GetTransform()->scale = Vector2(1.0f, 1.0f);
-        buttonExit->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2, 520);
+        buttonExit->GetTransform()->scale = Vector2(1.5f, 1.5f);
+        buttonExit->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2, 700);
         SPAWN.SpawnObject(buttonExit);
 
         //-------------------------------AUDIO-------------------------------//
         AudioOn = new TextObject("On");
         AudioOn->GetTransform()->scale = Vector2(1.0f, 1.0f);
-        AudioOn->GetTransform()->position = Vector2((RM->WINDOW_WIDTH / 2) -30, 450);
+        AudioOn->GetTransform()->position = Vector2((RM->WINDOW_WIDTH / 2) -30, 520);
 
         AudioOff = new TextObject("Off");
         AudioOff->GetTransform()->scale = Vector2(1.0f, 1.0f);
-        AudioOff->GetTransform()->position = Vector2((RM->WINDOW_WIDTH / 2) + 30, 450);
+        AudioOff->GetTransform()->position = Vector2((RM->WINDOW_WIDTH / 2) + 30, 520);
 
         if (isAudioOn) {
             AudioOn->SetColor(selectedColor);

@@ -2,13 +2,12 @@
 #include "../Enemies/Enemy.h"
 #include "../RenderManager.h"
 #include "../Players/Bullet.h"
+#include "../SpriteSelector.h"
 
 class Basic : public Enemy {
-
 public:
 	Basic(Vector2 pos, Player* player)
-		: Enemy("resources/PS_Enemy.png", pos, Vector2(1500.f, 1500.f)) {
-        
+		: Enemy("resources/Enemies/" + SpriteSelector::GetSelectedEnemy(), pos, Vector2(1500.f, 1500.f)) {
 	}
 
 	void Update() override {
