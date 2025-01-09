@@ -6,6 +6,7 @@
 #include "../Players/Bullet.h"
 #include "../InputManager.h"
 #include "../SceneManager.h"
+#include "../Death.h"
 
 class PlayerSpaceship : public Player {
 public:
@@ -21,6 +22,12 @@ public:
         Movement();
         Shooting();
         Player::Update();
+    }
+
+    void TransferLivesAndModeToDeath()
+    {
+        Death* deathScene = dynamic_cast<Death*>(SM.GetScene("Death"));
+        deathScene->SetLivesAndMode(lives, 0);
     }
 
     void Movement() override {
@@ -77,32 +84,16 @@ public:
 
     void OnCollisionEnter(Object* other) override {
         if (Enemy* enemy = dynamic_cast<Enemy*>(other)) {
-            float currentTime = TIME.GetElapsedTime();
-
-            //2 segons de cooldown
-            if (currentTime - lastDamageTime >= 2.0f) {
-
-                lives--;
-                lastDamageTime = currentTime;
-
-            }
+            lives--;
+            TransferLivesAndModeToDeath();
+            SM.SetNextScene("Death");
         }
         if (Bullet* bullet = dynamic_cast<Bullet*>(other)) {
             if (!bullet->IsFriendly()) {
-                float currentTime = TIME.GetElapsedTime();
-
-                if (currentTime - lastDamageTime >= 2.0f) {
-
-                    lives--;
-                    lastDamageTime = currentTime;
-
-                }
+                lives--;
+                TransferLivesAndModeToDeath();
+                SM.SetNextScene("Death");
             }
-        }
-        if (lives <= 0) {
-            Destroy();
-            SM.SetNextScene("SpaceInvaders");
-            lives = 3; //Torna a comensar
         }
     }
 };

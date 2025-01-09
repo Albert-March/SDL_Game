@@ -152,5 +152,8 @@
     <ClInclude Include="source\Ranking.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="source\Death.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

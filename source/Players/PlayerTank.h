@@ -59,6 +59,12 @@ public:
         Player::Update();
     }
 
+    void TransferLivesAndModeToDeath()
+    {
+        Death* deathScene = dynamic_cast<Death*>(SM.GetScene("Death"));
+        deathScene->SetLivesAndMode(lives, 1);
+    }
+
     void Movement() {
         float speed = 10.0f;
         if (Input.GetEvent(SDLK_UP, HOLD) || Input.GetEvent(SDLK_w, HOLD)) {
@@ -191,33 +197,16 @@ public:
 
     void OnCollisionEnter(Object* other) override {
         if (Enemy* enemy = dynamic_cast<Enemy*>(other)) {
-            float currentTime = TIME.GetElapsedTime();
-
-            //2 segons de cooldown
-            if (currentTime - lastDamageTime >= 2.0f) {
-
-                lives--;
-                lastDamageTime = currentTime;
-                
-            }
+            lives--;
+            TransferLivesAndModeToDeath();
+            SM.SetNextScene("Death");
         }
         if (Bullet* bullet = dynamic_cast<Bullet*>(other)) {
             if (!bullet->IsFriendly()) {
-                float currentTime = TIME.GetElapsedTime();
-
-                if (currentTime - lastDamageTime >= 2.0f) {
-
-                    lives--;
-                    lastDamageTime = currentTime;
-
-                }
+                lives--;
+                TransferLivesAndModeToDeath();
+                SM.SetNextScene("Death");
             }
-        }
-        if (lives <= 0) {
-            Destroy();
-            cannon->Destroy();
-            SM.SetNextScene("Tanks");
-            lives = 3; //Torna a comensar
         }
     }
 };

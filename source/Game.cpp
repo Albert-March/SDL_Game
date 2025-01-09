@@ -10,6 +10,7 @@
 #include "PlayMenu.h"
 #include "SpriteSelector.h"
 #include "Win.h"
+#include "Death.h"
 #include "Ranking.h"
 
 void Game::Init()
@@ -45,6 +46,7 @@ void Game::Init()
 	assert(SM.AddScene("Swatter", new GameplaySwatter()));
 
 	assert(SM.AddScene("Win", new Win()));
+	assert(SM.AddScene("Death", new Death()));
 
 
 	assert(SM.InitFirstScene("Main Menu"));

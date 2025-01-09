@@ -29,6 +29,7 @@
     <ClInclude Include="source\AnimatedImageObject.h" />
     <ClInclude Include="source\AnimatedImageRenderer.h" />
     <ClInclude Include="source\AudioManager.h" />
+    <ClInclude Include="source\Death.h" />
     <ClInclude Include="source\Enemies\Aiming.h" />
     <ClInclude Include="source\Enemies\Basic.h" />
     <ClInclude Include="source\GameplaySwatter.h" />

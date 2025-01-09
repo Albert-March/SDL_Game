@@ -77,47 +77,6 @@ public:
         if (!IsMouseOverButton(buttonTanks, mousePos) && !IsMouseOverButton(buttonSwatter, mousePos) && !IsMouseOverButton(buttonSpaceInvaders, mousePos) && !IsMouseOverButton(buttonBack, mousePos))
             pendingToChange = false;
 
-        if (IsMouseOverButton(buttonTanks, mousePos)) {
-            buttonTanks->SetColor(selectedColor);
-            if (isLeftClick) {
-                pendingToChange = true;
-            }
-            if (!buttonTanksColliding) {
-                AM.PlayClip("SelectButton", 0);
-                buttonTanksColliding = true;
-            }
-            if (!isLeftClick && pendingToChange) {
-                SM.SetNextScene("SpaceInvaders");
-                AM.PlayClip("ClickButton", 0);
-                pendingToChange = false;
-            }
-        }
-        else {
-            buttonTanks->SetColor(normalColor);
-            buttonTanksColliding = false;
-        }
-
-
-        if (IsMouseOverButton(buttonSwatter, mousePos)) {
-            buttonSwatter->SetColor(selectedColor);
-            if (isLeftClick) {
-                pendingToChange = true;
-            }
-            if (!buttonSwatterColliding) {
-                AM.PlayClip("SelectButton", 0);
-                buttonSwatterColliding = true;
-            }
-            if (!isLeftClick && pendingToChange) {
-                SM.SetNextScene("Tanks");
-                AM.PlayClip("ClickButton", 0);
-                pendingToChange = false;
-            }
-        }
-        else {
-            buttonSwatter->SetColor(normalColor);
-            buttonSwatterColliding = false;
-        }
-
 
         if (IsMouseOverButton(buttonSpaceInvaders, mousePos)) {
             buttonSpaceInvaders->SetColor(selectedColor);
@@ -129,7 +88,7 @@ public:
                 buttonSpaceInvadersColliding = true;
             }
             if (!isLeftClick && pendingToChange) {
-                SM.SetNextScene("Swatter");
+                SM.SetNextScene("SpaceInvaders");
                 AM.PlayClip("ClickButton", 0);
                 pendingToChange = false;
             }
@@ -137,6 +96,46 @@ public:
         else {
             buttonSpaceInvaders->SetColor(normalColor);
             buttonSpaceInvadersColliding = false;
+        }
+
+        if (IsMouseOverButton(buttonTanks, mousePos)) {
+            buttonTanks->SetColor(selectedColor);
+            if (isLeftClick) {
+                pendingToChange = true;
+            }
+            if (!buttonTanksColliding) {
+                AM.PlayClip("SelectButton", 0);
+                buttonTanksColliding = true;
+            }
+            if (!isLeftClick && pendingToChange) {
+                SM.SetNextScene("Tanks");
+                AM.PlayClip("ClickButton", 0);
+                pendingToChange = false;
+            }
+        }
+        else {
+            buttonTanks->SetColor(normalColor);
+            buttonTanksColliding = false;
+        }
+
+        if (IsMouseOverButton(buttonSwatter, mousePos)) {
+            buttonSwatter->SetColor(selectedColor);
+            if (isLeftClick) {
+                pendingToChange = true;
+            }
+            if (!buttonSwatterColliding) {
+                AM.PlayClip("SelectButton", 0);
+                buttonSwatterColliding = true;
+            }
+            if (!isLeftClick && pendingToChange) {
+                SM.SetNextScene("Swatter");
+                AM.PlayClip("ClickButton", 0);
+                pendingToChange = false;
+            }
+        }
+        else {
+            buttonSwatter->SetColor(normalColor);
+            buttonSwatterColliding = false;
         }
 
 

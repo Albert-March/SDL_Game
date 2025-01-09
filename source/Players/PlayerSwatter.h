@@ -99,7 +99,7 @@ public:
             float currentTime = TIME.GetElapsedTime();
 
             //2 segons de cooldown
-            if (currentTime - lastDamageTime >= 2.0f) {
+            if (currentTime - lastDamageTime >= 2.0f && currentState == Stuned) {
 
                 lives--;
                 lastDamageTime = currentTime;
