@@ -67,7 +67,7 @@ public:
             else if (gameMode == 1)
                 SM.SetNextScene("Tanks");
             else if (gameMode == 2)
-                SM.SetNextScene("Splat");
+                SM.SetNextScene("Swatter");
         }
 
         Scene::Update();

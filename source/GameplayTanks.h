@@ -22,7 +22,7 @@ private:
 	float spawnCooldown = 5.0f;
 
 	Player* activePlayer = nullptr;
-	int playerLives = 3;
+	int playerLives;
 	int enemyType;
 
 	TextObject* livesText;
@@ -94,7 +94,7 @@ private:
 			SPAWN.SpawnObject(new Seeker(Vector2(50, -20), activePlayer));
 			break;
 		case 3:
-			SPAWN.SpawnObject(new Shooting(Vector2(50, 40), activePlayer));
+			//SPAWN.SpawnObject(new Shooting(Vector2(50, 40), activePlayer));
 			break;
 		case 4:
 			SPAWN.SpawnObject(new Aiming(Vector2(50, 40), activePlayer));

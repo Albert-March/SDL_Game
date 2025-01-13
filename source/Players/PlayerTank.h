@@ -12,7 +12,7 @@ public:
         : ImageObject("resources/Cannon.png", Vector2(0.f, 0.f), Vector2(130.f, 485.f)) {
         transform->position = pos;
         transform->rotation = 0.0f;
-        transform->scale = Vector2(1.f, 1.f);
+        transform->scale = Vector2(0.5f, 1.f);
     }
 
     void SetPosition(Vector2 position) {
