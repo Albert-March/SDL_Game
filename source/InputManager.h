@@ -14,6 +14,7 @@ class InputManager
 private:
     int mouseX, mouseY;
     bool leftClick;
+    float lastTimeClick = 0.4f;
 
 
     std::unordered_map<Sint32, KeyState> keyReference;
@@ -35,7 +36,7 @@ public:
 
     bool Listen()
     {
-
+        lastTimeClick += TIME.GetDeltaTime();
         //Update the keys from the previous frame
         for (std::unordered_map<Sint32, KeyState>::iterator it = keyReference.begin(); it != keyReference.end(); it++) 
         {
@@ -56,8 +57,10 @@ public:
                 return true;
 
             case SDL_MOUSEBUTTONDOWN:
-                if (event.button.button == SDL_BUTTON_LEFT)
+                if (event.button.button == SDL_BUTTON_LEFT) {
                     leftClick = true;
+                    lastTimeClick = 0.0f;
+                }
                 break;
 
             case SDL_MOUSEBUTTONUP:
@@ -75,7 +78,8 @@ public:
                 break;
 
             case SDL_KEYUP:
-                keyReference[event.key.keysym.sym] = UP;
+                if (keyReference[event.key.keysym.sym] != RELEASED)
+                    keyReference[event.key.keysym.sym] = UP;
                 break;
 
             case SDL_TEXTINPUT:
@@ -93,7 +97,8 @@ public:
     }
     inline int GetMouseX()const { return mouseX; }
     inline int GetMouseY() const { return mouseY; }
-    inline bool GetLeftClick() const { return leftClick; }
+    inline bool GetLeftClick() const { return lastTimeClick <= 0.001f; }
+    inline bool GetHoldClick() const { return leftClick; }
     inline bool GetEvent(Sint32 input, KeyState inputValue)
     {
         return keyReference[input] == inputValue;

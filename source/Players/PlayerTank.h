@@ -97,18 +97,20 @@ public:
         }
 
         float halfWidth = transform->size.x * 0.5f * transform->scale.x;
-        if (transform->position.x - halfWidth < 0) {
-            transform->position.x = halfWidth;
-        }
-        if (transform->position.x + halfWidth > RM->WINDOW_WIDTH) {
-            transform->position.x = RM->WINDOW_WIDTH - halfWidth;
-        }
         float halfHeight = transform->size.y * 0.5f * transform->scale.y;
-        if (transform->position.y - halfHeight < 0) {
-            transform->position.y = halfHeight;
+
+        if (transform->position.x + halfWidth < 0) {
+            transform->position.x = RM->WINDOW_WIDTH + halfWidth;
         }
-        if (transform->position.y + halfHeight > RM->WINDOW_HEIGHT) {
-            transform->position.y = RM->WINDOW_HEIGHT - halfHeight;
+        else if (transform->position.x - halfWidth > RM->WINDOW_WIDTH) {
+            transform->position.x = -halfWidth;
+        }
+
+        if (transform->position.y + halfHeight < 0) {
+            transform->position.y = RM->WINDOW_HEIGHT + halfHeight;
+        }
+        else if (transform->position.y - halfHeight > RM->WINDOW_HEIGHT) {
+            transform->position.y = -halfHeight;
         }
     }    
 

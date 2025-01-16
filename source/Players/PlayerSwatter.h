@@ -13,7 +13,7 @@ enum PlayerState {
 
 class PlayerSwatter : public Player {
 public:
-    bool isColliding;
+    //bool isColliding;
     float stateStartTime = 0.0f;
     PlayerState currentState = Normal;
 
@@ -34,24 +34,17 @@ public:
             break;
 
         case Attack:
-            if (isColliding) {
-                currentState = Normal;
-            }
-            else {
-                float elapsedTime = TIME.GetElapsedTime() - stateStartTime;
-                if (elapsedTime >= 0.2f) {
-                    currentState = Stuned;
-                    stateStartTime = TIME.GetElapsedTime();
-                }
-            }
-            break;
+            currentState = Stuned;
 
         case Stuned:
+            float elapsedTime = TIME.GetElapsedTime() - stateStartTime;
             if (TIME.GetElapsedTime() - stateStartTime >= 2.0f) {
                 currentState = Normal;
             }
             break;
         }
+
+        std::cout << currentState;
 
         Player::Update();
     }
@@ -91,22 +84,23 @@ public:
 
     void OnCollisionEnter(Object* other) override {
         if (Enemy* enemy = dynamic_cast<Enemy*>(other)) {
-            isColliding = true;
             if (currentState == Attack) {
                 enemy->Destroy();
                 currentState = Normal;
             }
+            else if (currentState == Stuned) {
+                lives--;
+                TransferLivesAndModeToDeath();
+                SM.SetNextScene("Death");
+            }
         }
         else {
-            isColliding = false;
+            if (currentState == Attack)
+            {
+                currentState = Stuned;
+            }
         }
         
-        if (Enemy* enemy = dynamic_cast<Enemy*>(other)) {
-
-            lives--;
-            TransferLivesAndModeToDeath();
-            SM.SetNextScene("Death");
-        }
         if (Bullet* bullet = dynamic_cast<Bullet*>(other)) {
             if (!bullet->IsFriendly()) {
                 lives--;
