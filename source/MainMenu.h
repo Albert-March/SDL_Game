@@ -104,7 +104,7 @@ public:
 
     void Update() override {
         Vector2 mousePos = Vector2(Input.GetMouseX(), Input.GetMouseY());
-        isLeftClick = Input.GetLeftClick();
+        isLeftClick = Input.GetHoldClick();
 
         if(!IsMouseOverButton(buttonPlay, mousePos) && !IsMouseOverButton(buttonSelectSprites, mousePos) && !IsMouseOverButton(buttonAudio, mousePos) && !IsMouseOverButton(buttonCheckRanking, mousePos))
             pendingToChange = false;

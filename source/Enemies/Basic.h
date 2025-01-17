@@ -3,6 +3,7 @@
 #include "../RenderManager.h"
 #include "../Players/Bullet.h"
 #include "../SpriteSelector.h"
+#include "../AnimatedImageObject.h"
 
 class Basic : public Enemy {
 public:
@@ -22,9 +23,13 @@ public:
 	void OnCollisionEnter(Object* other) override {
 		if (Bullet* bullet = dynamic_cast<Bullet*>(other)) {
 			if (bullet->IsFriendly()) {
-
 				Destroy();
 				other->Destroy();
+
+				AnimatedImageObject* animated = new AnimatedImageObject("resources/Explosion.png", Vector2(0.f, 0.f), Vector2(626.f, 313.f), 4, 2, false);
+				animated->GetTransform()->position = transform->position;
+				animated->GetTransform()->scale = Vector2(0.5f, 0.5f);
+				SPAWN.SpawnObject(animated);
 			}
 		}
 	}

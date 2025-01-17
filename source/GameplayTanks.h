@@ -18,8 +18,8 @@
 class GameplayTanks : public Scene
 {
 private:
-	float lastSpawnTime = -5.0f;
-	float spawnCooldown = 5.0f;
+	float lastSpawnTime = -2.0f;
+	float spawnCooldown = 2.0f;
 
 	Player* activePlayer = nullptr;
 	int playerLives;
@@ -55,7 +55,7 @@ public:
 		float currentTime = TIME.GetElapsedTime();
 
 		if (currentTime - lastSpawnTime >= spawnCooldown) {
-			enemyType = rand() % 4 + 1;
+			enemyType = rand() % 3 + 1;
 			SpawnEnemy();
 			lastSpawnTime = currentTime;
 		}
@@ -94,10 +94,10 @@ private:
 			SPAWN.SpawnObject(new Seeker(Vector2(50, -20), activePlayer));
 			break;
 		case 3:
-			//SPAWN.SpawnObject(new Shooting(Vector2(50, 40), activePlayer));
+			SPAWN.SpawnObject(new Aiming(Vector2(50, 40), activePlayer));
 			break;
 		case 4:
-			SPAWN.SpawnObject(new Aiming(Vector2(50, 40), activePlayer));
+			//SPAWN.SpawnObject(new Shooting(Vector2(50, 40), activePlayer));
 			break;
 		case 5:
 			//SPAWN.SpawnObject(new Exploding(Vector2(50, 40), activePlayer));

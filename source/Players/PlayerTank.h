@@ -118,12 +118,10 @@ public:
         float currentTime = TIME.GetElapsedTime();
 
         if (Input.GetLeftClick()) {
-            if (currentTime - lastShotTime >= shootCooldown) {
-                FireBullet();
-                lastShotTime = currentTime;
-            }
+            FireBullet();
+            lastShotTime = currentTime;
         }
-        if (Input.GetLeftClick() && currentTime - lastShotTime >= shootCooldown) {
+        else if (Input.GetHoldClick() && currentTime - lastShotTime >= shootCooldown) {
             FireBullet();
             lastShotTime = currentTime;
         }
@@ -199,6 +197,7 @@ public:
 
     void OnCollisionEnter(Object* other) override {
         if (Enemy* enemy = dynamic_cast<Enemy*>(other)) {
+            enemy->Destroy();
             lives--;
             TransferLivesAndModeToDeath();
             SM.SetNextScene("Death");

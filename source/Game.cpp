@@ -23,6 +23,10 @@ void Game::Init()
 	RM->LoadTexture("resources/Swatter.png");
 	RM->LoadTexture("resources/Cannon.png");
 	RM->LoadTexture("resources/animation.png");
+	RM->LoadTexture("resources/Explosion.jpg");
+	RM->LoadTexture("resources/Explosion.png");
+	RM->LoadTexture("resources/SplashScreen.png");
+	RM->LoadTexture("resources/LoadingImage.png");
 	RM->LoadTexture("resources/MenuBackground.jpg");
 
 	RM->LoadTexture("resources/selected.png");
@@ -49,13 +53,14 @@ void Game::Init()
 	assert(SM.AddScene("Death", new Death()));
 
 
-	assert(SM.InitFirstScene("Main Menu"));
+	assert(SM.InitFirstScene("Tanks"));
 
 
 	//audio
 	AM.LoadClip("SelectButton");
 	AM.LoadClip("ClickButton");
 	AM.LoadClip("StartGame");
+	AM.LoadClip("Shot");
 
 	AM.LoadSong("Music");
 

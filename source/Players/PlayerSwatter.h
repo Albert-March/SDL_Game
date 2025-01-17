@@ -13,7 +13,6 @@ enum PlayerState {
 
 class PlayerSwatter : public Player {
 public:
-    //bool isColliding;
     float stateStartTime = 0.0f;
     PlayerState currentState = Normal;
 
@@ -32,9 +31,6 @@ public:
                 Movement();
             }
             break;
-
-        case Attack:
-            currentState = Stuned;
 
         case Stuned:
             float elapsedTime = TIME.GetElapsedTime() - stateStartTime;
