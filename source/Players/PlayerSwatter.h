@@ -81,6 +81,7 @@ public:
     void OnCollisionEnter(Object* other) override {
         if (Enemy* enemy = dynamic_cast<Enemy*>(other)) {
             if (currentState == Attack) {
+                AM.PlayClip("Impact", 0);
                 enemy->Destroy();
                 currentState = Normal;
             }

@@ -216,7 +216,7 @@ public:
         if (IsMouseOverButton(buttonExit, mousePos)) {
             buttonExit->SetColor(selectedColor);
             if (isLeftClick) {
-                //exit(0);
+                exit(0);
             }
             if (buttonExitColliding == false) {
                 AM.PlayClip("SelectButton", 0);

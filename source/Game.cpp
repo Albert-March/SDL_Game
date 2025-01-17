@@ -22,12 +22,8 @@ void Game::Init()
 	RM->LoadTexture("resources/Spaceship.png");
 	RM->LoadTexture("resources/Swatter.png");
 	RM->LoadTexture("resources/Cannon.png");
-	RM->LoadTexture("resources/animation.png");
-	RM->LoadTexture("resources/Explosion.jpg");
-	RM->LoadTexture("resources/Explosion.png");
 	RM->LoadTexture("resources/SplashScreen.png");
 	RM->LoadTexture("resources/LoadingImage.png");
-	RM->LoadTexture("resources/MenuBackground.jpg");
 
 	RM->LoadTexture("resources/selected.png");
 	RM->LoadTexture("resources/Backgrounds/background_1.jpg");
@@ -37,6 +33,10 @@ void Game::Init()
 	RM->LoadTexture("resources/Enemies/enemy_1.png");
 	RM->LoadTexture("resources/Enemies/enemy_2.png");
 	RM->LoadTexture("resources/Enemies/enemy_3.png");
+
+	RM->LoadTexture("resources/VFX/VFX_1.png");
+	RM->LoadTexture("resources/VFX/VFX_2.png");
+	RM->LoadTexture("resources/VFX/VFX_3.png");
 
 	assert(SM.AddScene("Splash Screen", new SplashScreen()));
 
@@ -53,7 +53,7 @@ void Game::Init()
 	assert(SM.AddScene("Death", new Death()));
 
 
-	assert(SM.InitFirstScene("Tanks"));
+	assert(SM.InitFirstScene("Splash Screen"));
 
 
 	//audio
@@ -61,6 +61,7 @@ void Game::Init()
 	AM.LoadClip("ClickButton");
 	AM.LoadClip("StartGame");
 	AM.LoadClip("Shot");
+	AM.LoadClip("Impact");
 
 	AM.LoadSong("Music");
 

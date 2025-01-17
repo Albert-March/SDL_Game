@@ -171,6 +171,8 @@ public:
         bullet->SetRotation(angleDegrees);
 
         SPAWN.SpawnObject(bullet);
+
+        AM.PlayClip("Shot", 0);
     }
 
     Vector2 CalculateEdgePosition(const Vector2& center, const Vector2& direction, float halfSize) {

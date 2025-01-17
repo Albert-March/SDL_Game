@@ -66,10 +66,8 @@ public:
 		score += 1;
 		scoreText->SetText("Score: " + std::to_string(score));
 
-		if (Input.GetEvent(SDLK_1, DOWN))
-			SM.SetNextScene("SpaceInvaders");
-		if (Input.GetEvent(SDLK_3, DOWN))
-			SM.SetNextScene("Splat");
+		if (Input.GetEvent(SDLK_ESCAPE, DOWN))
+			SM.SetNextScene("Main Menu");
 		//Temporal
 		if (Input.GetEvent(SDLK_0, DOWN)) {
 			TransferScoreAndModeToWin();

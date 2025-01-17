@@ -75,7 +75,7 @@ public:
         Bullet* bullet = new Bullet(bulletPosition, bulletVelocity, 1);
         SPAWN.SpawnObject(bullet);
 
-        std::cout << "Bullet fired!" << std::endl;
+        AM.PlayClip("Shot", 0);
     }
 
     void Render() override {

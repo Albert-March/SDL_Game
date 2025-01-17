@@ -40,6 +40,11 @@ private:
     static std::string enemySelected;
     static std::string VFXSelected;
 
+    static int VFXframeWidth;
+    static int VFXframeHeight;
+    static int VFXNumRows;
+    static int VFXNumColumns;
+
     SDL_Color normalColor = { 255, 255, 255, 255 };
     SDL_Color selectedColor = { 255, 0, 0, 255 };
 
@@ -138,17 +143,17 @@ public:
         selectedVFX->GetTransform()->scale = Vector2(1.2f, 1.2f);
         SPAWN.SpawnObject(selectedVFX);
 
-        VFX_1 = new ImageObject("resources/MenuBackground.jpg", Vector2(0.f, 0.f), Vector2(1360.f, 768.f));
+        VFX_1 = new ImageObject("resources/VFX/VFX_1.png", Vector2(0.f, 0.f), Vector2(1360.f, 768.f));
         VFX_1->GetTransform()->position = Vector2(430, 560);
         VFX_1->GetTransform()->scale = Vector2(1.f, 1.f);
         SPAWN.SpawnObject(VFX_1);
 
-        VFX_2 = new ImageObject("resources/MenuBackground.jpg", Vector2(0.f, 0.f), Vector2(1360.f, 768.f));
+        VFX_2 = new ImageObject("resources/VFX/VFX_2.png", Vector2(0.f, 0.f), Vector2(1360.f, 768.f));
         VFX_2->GetTransform()->position = Vector2(680, 560);
         VFX_2->GetTransform()->scale = Vector2(1.f, 1.f);
         SPAWN.SpawnObject(VFX_2);
 
-        VFX_3 = new ImageObject("resources/MenuBackground.jpg", Vector2(0.f, 0.f), Vector2(1360.f, 768.f));
+        VFX_3 = new ImageObject("resources/VFX/VFX_3.png", Vector2(0.f, 0.f), Vector2(1360.f, 768.f));
         VFX_3->GetTransform()->position = Vector2(930, 560);
         VFX_3->GetTransform()->scale = Vector2(1.f, 1.f);
         SPAWN.SpawnObject(VFX_3);
@@ -169,7 +174,7 @@ public:
         float buttonH = button->GetTransform()->size.y * button->GetTransform()->scale.y;
         float buttonX = button->GetTransform()->position.x - (buttonW / 2);
         float buttonY = button->GetTransform()->position.y - (buttonH / 2);
-        
+
 
         return (mousePos.x >= buttonX && mousePos.x <= buttonX + buttonW &&
             mousePos.y >= buttonY && mousePos.y <= buttonY + buttonH);
@@ -208,7 +213,7 @@ public:
         //-------------------- BACKGROUND SELECTION -------------------------//
         if (IsMouseOverSprite(background_1, mousePos)) {
             background_1->GetTransform()->scale = Vector2(1.2f, 1.2f);
-            if(selectedBackground->GetTransform()->position == background_1->GetTransform()->position)
+            if (selectedBackground->GetTransform()->position == background_1->GetTransform()->position)
                 selectedBackground->GetTransform()->scale = Vector2(1.4f, 1.4f);
             if (isLeftClick) {
                 pendingToChange = true;
@@ -372,7 +377,11 @@ public:
                 CollidingVFX_1 = true;
             }
             if (!isLeftClick && pendingToChange) {
-                VFXSelected = "VFX_1";
+                VFXSelected = "VFX_1.png";
+                VFXframeWidth = 626;
+                VFXframeHeight = 313;
+                VFXNumRows = 4;
+                VFXNumColumns = 2;
                 AM.PlayClip("ClickButton", 0);
                 selectedVFXPos = Vector2(430, 560);
                 selectedVFX->GetTransform()->position = selectedVFXPos;
@@ -398,7 +407,11 @@ public:
                 CollidingVFX_2 = true;
             }
             if (!isLeftClick && pendingToChange) {
-                VFXSelected = "VFX_2";
+                VFXSelected = "VFX_2.png";
+                VFXframeWidth = 1920;
+                VFXframeHeight = 960;
+                VFXNumRows = 5;
+                VFXNumColumns = 2;
                 AM.PlayClip("ClickButton", 0);
                 selectedVFXPos = Vector2(680, 560);
                 selectedVFX->GetTransform()->position = selectedVFXPos;
@@ -423,7 +436,11 @@ public:
                 CollidingVFX_3 = true;
             }
             if (!isLeftClick && pendingToChange) {
-                VFXSelected = "VFX_3";
+                VFXSelected = "VFX_3.png";
+                VFXframeWidth = 1920;
+                VFXframeHeight = 384;
+                VFXNumRows = 7;
+                VFXNumColumns = 1;
                 AM.PlayClip("ClickButton", 0);
                 selectedVFXPos = Vector2(930, 560);
                 selectedVFX->GetTransform()->position = selectedVFXPos;
@@ -472,12 +489,22 @@ public:
 
     static std::string GetSelectedBackground() { return backgroundSelected; }
     static std::string GetSelectedEnemy() { return enemySelected; }
-    static std::string GetSelectedVFX(){ return VFXSelected; }
+    static std::string GetSelectedVFX() { return VFXSelected; }
+
+    static int GetVFXNumRows() { return VFXNumRows; }
+    static int GetVFXNumColumns() { return VFXNumColumns; }
+    static int GetVFXframeWidth() { return VFXframeWidth; }
+    static int GetVFXframeHeight() { return VFXframeHeight; }
 
 };
 std::string SpriteSelector::backgroundSelected = "background_1.jpg";
 std::string SpriteSelector::enemySelected = "enemy_1.png";
-std::string SpriteSelector::VFXSelected = "VFX_1";
+std::string SpriteSelector::VFXSelected = "VFX_1.png";
+
+int SpriteSelector::VFXframeWidth = 626;
+int SpriteSelector::VFXframeHeight = 313;
+int SpriteSelector::VFXNumRows = 4;
+int SpriteSelector::VFXNumColumns = 2;
 
 Vector2 SpriteSelector::selectedBackgroundPos = Vector2(430, 260);
 Vector2 SpriteSelector::selectedEnemiesPos = Vector2(430, 410);

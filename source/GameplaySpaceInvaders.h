@@ -68,10 +68,6 @@ public:
 		score += 1;
 		scoreText->SetText("Score: " + std::to_string(score));
 
-		if (Input.GetEvent(SDLK_2, DOWN))
-			SM.SetNextScene("Tanks");
-		if (Input.GetEvent(SDLK_3, DOWN))
-			SM.SetNextScene("Splat");
 		if (Input.GetEvent(SDLK_ESCAPE, DOWN))
 			SM.SetNextScene("Main Menu");
 		//Temporal

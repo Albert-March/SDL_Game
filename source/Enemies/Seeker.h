@@ -50,9 +50,14 @@ public:
                 Destroy();
                 other->Destroy();
 
-                AnimatedImageObject* animated = new AnimatedImageObject("resources/Explosion.png", Vector2(0.f, 0.f), Vector2(626.f, 313.f), 4, 2, false);
+                std::string VFX = SpriteSelector::GetSelectedVFX();
+                int VFXframeWidth = SpriteSelector::GetVFXframeWidth();
+                int VFXframeHeight = SpriteSelector::GetVFXframeHeight();
+                int VFXNumRows = SpriteSelector::GetVFXNumRows();
+                int VFXNumColumns = SpriteSelector::GetVFXNumColumns();
+                AnimatedImageObject* animated = new AnimatedImageObject("resources/VFX/" + VFX, Vector2(0.f, 0.f), Vector2(VFXframeWidth, VFXframeHeight), VFXNumRows, VFXNumColumns, false);
                 animated->GetTransform()->position = transform->position;
-                animated->GetTransform()->scale = Vector2(0.5f, 0.5f);
+                animated->GetTransform()->scale = Vector2(1.0f, 1.0f);
                 SPAWN.SpawnObject(animated);
             }
         }

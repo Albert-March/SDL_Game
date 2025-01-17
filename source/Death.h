@@ -29,7 +29,7 @@ public:
     void OnEnter() override {
         if (lives >= 1)
         {
-            text = "U Death";
+            text = "You ar Death";
         }
         else {
             text = "Game Over";
