@@ -105,6 +105,8 @@ public:
 		}
 	}
 
+	int GetScoreValue() const override { return 250; }
+
 	void Render() override {
 		Enemy::Render();
 	}

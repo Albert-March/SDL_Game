@@ -8,6 +8,8 @@
 class SpriteSelector : public Scene
 {
 private:
+    ImageObject* menuBackground;
+
     TextObject* TextSelectorSprites;
 
     TextObject* backgroundButton;
@@ -70,6 +72,12 @@ public:
 
     void OnEnter() override {
 
+        menuBackground = new ImageObject("resources/MenuBackground.png", Vector2(0.f, 0.f), Vector2(1366.f, 768.f));
+        menuBackground->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2, RM->WINDOW_HEIGHT / 2);
+        menuBackground->GetTransform()->scale = Vector2(13.6f, 7.68f);
+        SPAWN.SpawnObject(menuBackground);
+
+
         TextSelectorSprites = new TextObject("Sprite Selector");
         TextSelectorSprites->GetTransform()->scale = Vector2(2.f, 2.f);
         TextSelectorSprites->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2, 150);
@@ -115,17 +123,17 @@ public:
         selectedEnemies->GetTransform()->scale = Vector2(1.2f, 1.2f);
         SPAWN.SpawnObject(selectedEnemies);
 
-        enemies_1 = new ImageObject("resources/Enemies/enemy_1.png", Vector2(0.f, 0.f), Vector2(1360.f, 768.f));
+        enemies_1 = new ImageObject("resources/Enemies/enemySS_1.png", Vector2(0.f, 0.f), Vector2(1360.f, 768.f));
         enemies_1->GetTransform()->position = Vector2(430, 410);
         enemies_1->GetTransform()->scale = Vector2(1.f, 1.f);
         SPAWN.SpawnObject(enemies_1);
 
-        enemies_2 = new ImageObject("resources/Enemies/enemy_2.png", Vector2(0.f, 0.f), Vector2(1360.f, 768.f));
+        enemies_2 = new ImageObject("resources/Enemies/enemySS_2.png", Vector2(0.f, 0.f), Vector2(1360.f, 768.f));
         enemies_2->GetTransform()->position = Vector2(680, 410);
         enemies_2->GetTransform()->scale = Vector2(1.f, 1.f);
         SPAWN.SpawnObject(enemies_2);
 
-        enemies_3 = new ImageObject("resources/Enemies/enemy_3.png", Vector2(0.f, 0.f), Vector2(1360.f, 768.f));
+        enemies_3 = new ImageObject("resources/Enemies/enemySS_3.png", Vector2(0.f, 0.f), Vector2(1360.f, 768.f));
         enemies_3->GetTransform()->position = Vector2(930, 410);
         enemies_3->GetTransform()->scale = Vector2(1.f, 1.f);
         SPAWN.SpawnObject(enemies_3);
@@ -143,17 +151,17 @@ public:
         selectedVFX->GetTransform()->scale = Vector2(1.2f, 1.2f);
         SPAWN.SpawnObject(selectedVFX);
 
-        VFX_1 = new ImageObject("resources/VFX/VFX_1.png", Vector2(0.f, 0.f), Vector2(1360.f, 768.f));
+        VFX_1 = new ImageObject("resources/VFX/VFXSS_1.png", Vector2(0.f, 0.f), Vector2(1360.f, 768.f));
         VFX_1->GetTransform()->position = Vector2(430, 560);
         VFX_1->GetTransform()->scale = Vector2(1.f, 1.f);
         SPAWN.SpawnObject(VFX_1);
 
-        VFX_2 = new ImageObject("resources/VFX/VFX_2.png", Vector2(0.f, 0.f), Vector2(1360.f, 768.f));
+        VFX_2 = new ImageObject("resources/VFX/VFXSS_2.png", Vector2(0.f, 0.f), Vector2(1360.f, 768.f));
         VFX_2->GetTransform()->position = Vector2(680, 560);
         VFX_2->GetTransform()->scale = Vector2(1.f, 1.f);
         SPAWN.SpawnObject(VFX_2);
 
-        VFX_3 = new ImageObject("resources/VFX/VFX_3.png", Vector2(0.f, 0.f), Vector2(1360.f, 768.f));
+        VFX_3 = new ImageObject("resources/VFX/VFXSS_3.png", Vector2(0.f, 0.f), Vector2(1360.f, 768.f));
         VFX_3->GetTransform()->position = Vector2(930, 560);
         VFX_3->GetTransform()->scale = Vector2(1.f, 1.f);
         SPAWN.SpawnObject(VFX_3);
@@ -482,6 +490,7 @@ public:
     }
 
     ~SpriteSelector() {
+        delete menuBackground;
         delete backgroundButton;
         delete enemies;
         delete VFX;

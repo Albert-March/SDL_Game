@@ -7,6 +7,8 @@
 class Ranking : public Scene
 {
 private:
+    ImageObject* menuBackground;
+
     TextObject* textRanking;
     TextObject* textSpaceInvaders;
     TextObject* textTank;
@@ -31,6 +33,11 @@ public:
 
     void OnEnter() override {
         selectedOption = 0;
+
+        menuBackground = new ImageObject("resources/MenuBackground.png", Vector2(0.f, 0.f), Vector2(1366.f, 768.f));
+        menuBackground->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2, RM->WINDOW_HEIGHT / 2);
+        menuBackground->GetTransform()->scale = Vector2(13.6f, 7.68f);
+        SPAWN.SpawnObject(menuBackground);
 
         textRanking = new TextObject("Ranking");
         textRanking->GetTransform()->scale = Vector2(2.f, 2.f);
@@ -62,13 +69,13 @@ public:
         textTank->SetColor(normalColor);
         textTank->GetTransform()->scale = Vector2(1.f, 1.f);
         textTank->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2, 250);
-        SPAWN.SpawnObject(textTank); 
-        
-        
+        SPAWN.SpawnObject(textTank);
+
+
         textSwatter = new TextObject("Swatter");
         textSwatter->SetColor(normalColor);
         textSwatter->GetTransform()->scale = Vector2(1.5f, 1.5f);
-        textSwatter->GetTransform()->position = Vector2((RM->WINDOW_WIDTH / 2) +400, 200);
+        textSwatter->GetTransform()->position = Vector2((RM->WINDOW_WIDTH / 2) + 400, 200);
         SPAWN.SpawnObject(textSwatter);
 
         std::string scoreTextSwatter = GetScoresAsString(2);
@@ -169,6 +176,7 @@ public:
     }
 
     ~Ranking() {
+        delete menuBackground;
         delete textRanking;
         delete textSwatter;
         delete textSpaceInvaders;

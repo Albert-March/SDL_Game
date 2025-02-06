@@ -29,7 +29,7 @@ public:
     void OnEnter() override {
         if (lives >= 1)
         {
-            text = "You ar Death";
+            text = "You are Death";
         }
         else {
             text = "Game Over";
@@ -57,11 +57,16 @@ public:
         timer += TIME.GetDeltaTime();
 
         if (timer >= duration1 && destroy == false) {
-            deathText->Destroy();    
+            deathText->Destroy();
             destroy = true;
         }
         if (timer >= (duration1 + duration2)) {
             timer = 0;
+            if (lives <= 0)
+            {
+                SM.SetNextScene("SaveScore");
+                return;
+            }
             if (gameMode == 0)
                 SM.SetNextScene("SpaceInvaders");
             else if (gameMode == 1)

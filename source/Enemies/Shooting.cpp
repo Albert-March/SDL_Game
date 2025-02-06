@@ -62,6 +62,8 @@
 //        SPAWN.SpawnObject(bullet);
 //    }
 //}
+// 
+//  int GetScoreValue() const override { return 200; }
 //
 //void Shooting::CleanUp() {
 //    for (Bullet* bullet : bullets) {

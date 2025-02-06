@@ -7,7 +7,8 @@
 class MainMenu : public Scene
 {
 private:
-    
+    ImageObject* menuBackground;
+
     TextObject* buttonPlay;
     TextObject* buttonSelectSprites;
     TextObject* buttonCheckRanking;
@@ -26,8 +27,8 @@ private:
 
     int selectedOption = 0;
 
-    SDL_Color normalColor = { 255, 255, 255, 255 }; 
-    SDL_Color selectedColor = { 255, 0, 0, 255 }; 
+    SDL_Color normalColor = { 255, 255, 255, 255 };
+    SDL_Color selectedColor = { 255, 0, 0, 255 };
 
     bool isLeftClick = false;
     bool pendingToChange = false;
@@ -37,6 +38,11 @@ public:
 
     void OnEnter() override {
         selectedOption = 0;
+
+        menuBackground = new ImageObject("resources/MenuBackground.png", Vector2(0.f, 0.f), Vector2(1366.f, 768.f));
+        menuBackground->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2, RM->WINDOW_HEIGHT / 2);
+        menuBackground->GetTransform()->scale = Vector2(13.6f, 7.68f);
+        SPAWN.SpawnObject(menuBackground);
 
         buttonPlay = new TextObject("Play");
         buttonPlay->SetColor(selectedColor);
@@ -71,7 +77,7 @@ public:
         //-------------------------------AUDIO-------------------------------//
         AudioOn = new TextObject("On");
         AudioOn->GetTransform()->scale = Vector2(1.0f, 1.0f);
-        AudioOn->GetTransform()->position = Vector2((RM->WINDOW_WIDTH / 2) -30, 520);
+        AudioOn->GetTransform()->position = Vector2((RM->WINDOW_WIDTH / 2) - 30, 520);
 
         AudioOff = new TextObject("Off");
         AudioOff->GetTransform()->scale = Vector2(1.0f, 1.0f);
@@ -106,7 +112,7 @@ public:
         Vector2 mousePos = Vector2(Input.GetMouseX(), Input.GetMouseY());
         isLeftClick = Input.GetHoldClick();
 
-        if(!IsMouseOverButton(buttonPlay, mousePos) && !IsMouseOverButton(buttonSelectSprites, mousePos) && !IsMouseOverButton(buttonAudio, mousePos) && !IsMouseOverButton(buttonCheckRanking, mousePos))
+        if (!IsMouseOverButton(buttonPlay, mousePos) && !IsMouseOverButton(buttonSelectSprites, mousePos) && !IsMouseOverButton(buttonAudio, mousePos) && !IsMouseOverButton(buttonCheckRanking, mousePos))
             pendingToChange = false;
 
         if (IsMouseOverButton(buttonPlay, mousePos)) {
@@ -236,6 +242,7 @@ public:
     }
 
     ~MainMenu() {
+        delete menuBackground;
         delete buttonPlay;
         delete buttonSelectSprites;
         delete buttonCheckRanking;

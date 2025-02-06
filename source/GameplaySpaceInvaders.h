@@ -16,7 +16,7 @@
 #include "InputManager.h"
 #include "SceneManager.h"
 #include "SpriteSelector.h"
-#include "Win.h"
+#include "SaveScore.h"
 
 class GameplaySpaceInvaders : public Scene
 {
@@ -32,10 +32,15 @@ private:
 	TextObject* scoreText;
 	int score = 0;
 
+	std::vector<Enemy*> activeEnemies;
+	int enemiesSpawned = 0;
+
 public:
 	GameplaySpaceInvaders() = default;
 
 	void OnEnter() override {
+		activeEnemies.clear();
+
 		std::string background = SpriteSelector::GetSelectedBackground();
 		ImageObject* bg = new ImageObject("resources/Backgrounds/" + background, Vector2(0.f, 0.f), Vector2(1360.f, 768.f));
 		bg->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2, RM->WINDOW_HEIGHT / 2);
@@ -49,32 +54,45 @@ public:
 	}
 
 	void TransferScoreAndModeToWin() {
-		Win* winScene = dynamic_cast<Win*>(SM.GetScene("Win"));
-		winScene->SetScoreAndMode(score, 0);
+		SaveScore* saveScore = dynamic_cast<SaveScore*>(SM.GetScene("SaveScore"));
+		saveScore->SetScoreAndMode(score, 0);
+	}
+
+	void AddScore(int points) {
+		score += points;
 	}
 
 	void Update() override {
 		float currentTime = TIME.GetElapsedTime();
 
-		if (currentTime - lastSpawnTime >= spawnCooldown) {
+		if (enemiesSpawned < 10 && (currentTime - lastSpawnTime >= spawnCooldown)) {
 			enemyType = rand() % 3 + 1;
 			SpawnEnemy();
 			lastSpawnTime = currentTime;
+			enemiesSpawned++;
 		}
+		if (enemiesSpawned >= 10) {
+			TransferScoreAndModeToWin();
+			SM.SetNextScene("SaveScore");
+		}
+
+		for (auto it = activeEnemies.begin(); it != activeEnemies.end(); ) {
+			if ((*it)->IsPendingDestroy()) {
+				AddScore((*it)->GetScoreValue());
+				it = activeEnemies.erase(it);
+			}
+			else {
+				++it;
+			}
+		}
+
 		playerLives = activePlayer->lives;
 		livesText->SetText("Lives: " + std::to_string(playerLives));
 
-
-		score += 1;
 		scoreText->SetText("Score: " + std::to_string(score));
 
 		if (Input.GetEvent(SDLK_ESCAPE, DOWN))
 			SM.SetNextScene("Main Menu");
-		//Temporal
-		if (Input.GetEvent(SDLK_0, DOWN)) {
-			TransferScoreAndModeToWin();
-			SM.SetNextScene("Win");
-		}
 
 		Scene::Update();
 	}
@@ -85,22 +103,29 @@ public:
 
 private:
 	void SpawnEnemy() {
+		Enemy* newEnemy = nullptr;
+
 		switch (enemyType) {
 		case 1:
-			SPAWN.SpawnObject(new Basic(Vector2(50, 40), activePlayer));
+			newEnemy = new Basic(Vector2(50, 40), activePlayer);
 			break;
 		case 2:
-			SPAWN.SpawnObject(new Seeker(Vector2(50, -20), activePlayer));
+			newEnemy = new Seeker(Vector2(50, -20), activePlayer);
 			break;
 		case 3:
-			SPAWN.SpawnObject(new Aiming(Vector2(50, 40), activePlayer));
+			newEnemy = new Aiming(Vector2(50, 40), activePlayer);
 			break;
-		case 4:
-			//SPAWN.SpawnObject(new Shooting(Vector2(50, 40), activePlayer));
-			break;
-		case 5:
-			//SPAWN.SpawnObject(new Exploding(Vector2(50, 40), activePlayer));
-			break;
+			/*case 4:
+				newEnemy = new Shooting(Vector2(50, 40), activePlayer);
+				break;
+			case 5:
+				newEnemy = new Exploding(Vector2(50, 40), activePlayer);
+				break;*/
+		}
+
+		if (newEnemy) {
+			SPAWN.SpawnObject(newEnemy);
+			activeEnemies.push_back(newEnemy);
 		}
 	}
 

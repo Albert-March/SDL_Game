@@ -39,6 +39,8 @@ public:
 		}
 	}
 
+	int GetScoreValue() const override { return 100; }
+
 	void Render() override {
 		Enemy::Render();
 	}

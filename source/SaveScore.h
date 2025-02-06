@@ -14,9 +14,9 @@ struct ScoreEntry {
     int gameMode = 0;
 };
 
-class Win : public Scene {
+class SaveScore : public Scene {
 private:
-    TextObject* WinText;
+    TextObject* ScoreText;
     TextObject* NameInputText;
     TextObject* AcceptButton;
     TextObject* AlertText;
@@ -40,16 +40,16 @@ private:
     bool inTheList;
 
 public:
-    Win() = default;
+    SaveScore() = default;
 
     void OnEnter() override {
         SDL_StartTextInput();
 
-        WinText = new TextObject("YOU WIN!");
-        WinText->SetColor(selectedColor);
-        WinText->GetTransform()->scale = Vector2(3.f, 3.f);
-        WinText->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2, 300);
-        SPAWN.SpawnObject(WinText);
+        ScoreText = new TextObject(std::to_string(playerScore));
+        ScoreText->SetColor(selectedColor);
+        ScoreText->GetTransform()->scale = Vector2(3.f, 3.f);
+        ScoreText->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2, 300);
+        SPAWN.SpawnObject(ScoreText);
 
         NameInputText = new TextObject("Enter your name: ");
         NameInputText->SetColor(normalColor);
@@ -79,7 +79,7 @@ public:
         }
     }
 
-    void SaveScore(const std::string& playerName, int playerScore, int gameMode) {
+    void SaveTheScore(const std::string& playerName, int playerScore, int gameMode) {
         std::map<int, std::vector<ScoreEntry>> scoresByMode;
 
         std::ifstream inFile("ranking.dat", std::ios::binary);
@@ -169,7 +169,7 @@ public:
                 std::cout << "BACKSPACE" << std::endl;
             }
         }
-        if (alertText == true) 
+        if (alertText == true)
         {
             AlertText->Destroy();
             alertText = false;
@@ -194,9 +194,9 @@ public:
                     std::cout << "Final Name: " << playerName << std::endl;
                     AM.PlayClip("ClickButton", 0);
 
-                    SaveScore(playerName, playerScore, gameMode);
+                    SaveTheScore(playerName, playerScore, gameMode);
 
-                    if(inTheList){
+                    if (inTheList) {
                         SM.SetNextScene("Ranking");
                     }
                     else if (newRecord) {
@@ -238,9 +238,9 @@ public:
         Scene::Render();
     }
 
-    ~Win() {
+    ~SaveScore() {
         SDL_StopTextInput();
-        delete WinText;
+        delete ScoreText;
         delete NameInputText;
         delete AcceptButton;
         delete AlertText;

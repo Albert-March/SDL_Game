@@ -7,6 +7,8 @@
 class PlayMenu : public Scene
 {
 private:
+    ImageObject* menuBackground;
+
     TextObject* buttonTanks;
     TextObject* buttonSwatter;
     TextObject* buttonSpaceInvaders;
@@ -30,6 +32,11 @@ public:
 
     void OnEnter() override {
         selectedOption = 0;
+
+        menuBackground = new ImageObject("resources/MenuBackground.png", Vector2(0.f, 0.f), Vector2(1366.f, 768.f));
+        menuBackground->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2, RM->WINDOW_HEIGHT / 2);
+        menuBackground->GetTransform()->scale = Vector2(13.6f, 7.68f);
+        SPAWN.SpawnObject(menuBackground);
 
         buttonSpaceInvaders = new TextObject("Space Invaders Game");
         buttonSpaceInvaders->SetColor(normalColor);
@@ -167,6 +174,7 @@ public:
     }
 
     ~PlayMenu() {
+        delete menuBackground;
         delete buttonTanks;
         delete buttonSwatter;
         delete buttonSpaceInvaders;

@@ -20,6 +20,9 @@ public:
     virtual void Render() override {
         ImageObject::Render();
     }
+
+    virtual int GetScoreValue() const { return 0; }
+
 protected:
     virtual void Movement() {
         static size_t currentStep = 0;

@@ -28,17 +28,17 @@ public:
     }
 
     void Update() override {
-		ImageObject::Update();
-	}
+        ImageObject::Update();
+    }
 
-	void Render() override {
-		ImageObject::Render();
-	}
+    void Render() override {
+        ImageObject::Render();
+    }
 };
 
 class PlayerTank : public Player {
 private:
-    Cannon* cannon = new Cannon(transform->position); 
+    Cannon* cannon = new Cannon(transform->position);
 
     float lastShotTime = 0.0f;
     const float shootCooldown = 1.0f;
@@ -112,7 +112,7 @@ public:
         else if (transform->position.y - halfHeight > RM->WINDOW_HEIGHT) {
             transform->position.y = -halfHeight;
         }
-    }    
+    }
 
     void Shooting() {
         float currentTime = TIME.GetElapsedTime();
@@ -159,7 +159,7 @@ public:
 
         Vector2 edgePosition = CalculateEdgePosition(playerPosition, direction, halfCannonSizeY);
 
-        float bulletSpeed = 8000.0f;
+        float bulletSpeed = 20000.0f;
         Vector2 bulletVelocity = direction * bulletSpeed;
 
         float angleRadians = atan2(direction.y, direction.x);

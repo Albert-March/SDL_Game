@@ -11,12 +11,12 @@
 class PlayerSpaceship : public Player {
 public:
 
-	PlayerSpaceship(Vector2 pos)
-		: Player("resources/Spaceship.png", Vector2(0.f, 0.f), Vector2(256.f, 256.f)) {
-		transform->position = pos;
-		transform->rotation = 0.0f;
-		transform->scale = Vector2(1.f, 1.f);
-	}
+    PlayerSpaceship(Vector2 pos)
+        : Player("resources/Spaceship.png", Vector2(0.f, 0.f), Vector2(256.f, 256.f)) {
+        transform->position = pos;
+        transform->rotation = 0.0f;
+        transform->scale = Vector2(1.f, 1.f);
+    }
 
     void Update() override {
         Movement();
@@ -70,7 +70,7 @@ public:
         float bulletYPosition = transform->position.y - halfPlayerHeight;
 
         Vector2 bulletPosition = Vector2(transform->position.x, bulletYPosition);
-        Vector2 bulletVelocity = Vector2(0, -8000.0f);
+        Vector2 bulletVelocity = Vector2(0, -20000.0f);
 
         Bullet* bullet = new Bullet(bulletPosition, bulletVelocity, 1);
         SPAWN.SpawnObject(bullet);

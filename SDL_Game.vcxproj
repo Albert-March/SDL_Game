@@ -66,7 +66,7 @@
     <ClInclude Include="source\TimeManager.h" />
     <ClInclude Include="source\Transform.h" />
     <ClInclude Include="source\Vector2.h" />
-    <ClInclude Include="source\Win.h" />
+    <ClInclude Include="source\SaveScore.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

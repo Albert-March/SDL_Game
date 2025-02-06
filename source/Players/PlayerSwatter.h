@@ -6,9 +6,9 @@
 #include "../Rigidbody.h"
 
 enum PlayerState {
-	Normal,
-	Attack,
-	Stuned
+    Normal,
+    Attack,
+    Stuned
 };
 
 class PlayerSwatter : public Player {
@@ -32,6 +32,13 @@ public:
             }
             break;
 
+        case Attack:
+            if (TIME.GetElapsedTime() - stateStartTime > 0.1f) {
+                currentState = Stuned;
+                stateStartTime = TIME.GetElapsedTime();
+            }
+            break;
+
         case Stuned:
             float elapsedTime = TIME.GetElapsedTime() - stateStartTime;
             if (TIME.GetElapsedTime() - stateStartTime >= 2.0f) {
@@ -39,8 +46,6 @@ public:
             }
             break;
         }
-
-        std::cout << currentState;
 
         Player::Update();
     }
@@ -97,7 +102,7 @@ public:
                 currentState = Stuned;
             }
         }
-        
+
         if (Bullet* bullet = dynamic_cast<Bullet*>(other)) {
             if (!bullet->IsFriendly()) {
                 lives--;
