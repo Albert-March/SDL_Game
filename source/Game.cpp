@@ -60,7 +60,7 @@ void Game::Init()
 	assert(SM.AddScene("Death", new Death()));
 
 
-	assert(SM.InitFirstScene("Main Menu"));
+	assert(SM.InitFirstScene("Splash Screen"));
 
 
 	//audio
